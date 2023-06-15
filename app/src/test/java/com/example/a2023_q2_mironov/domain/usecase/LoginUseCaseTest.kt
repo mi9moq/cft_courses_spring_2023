@@ -17,7 +17,7 @@ class LoginUseCaseTest {
     private val repository: AuthRepository = Mockito.mock()
     private val useCase = LoginUseCase(repository)
 
-    private val auth = AuthData.auth
+    private val auth = AuthData.authEntity
 
     private val token = AuthData.token
 

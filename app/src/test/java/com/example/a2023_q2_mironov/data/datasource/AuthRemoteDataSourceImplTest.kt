@@ -1,5 +1,6 @@
 package com.example.a2023_q2_mironov.data.datasource
 
+import com.example.a2023_q2_mironov.data.converter.AuthConverter
 import com.example.a2023_q2_mironov.data.converter.UserConverter
 import com.example.a2023_q2_mironov.data.network.LoanApi
 import com.example.a2023_q2_mironov.utils.AuthData
@@ -18,10 +19,12 @@ import org.mockito.kotlin.whenever
 @ExtendWith(MockitoExtension::class)
 class AuthRemoteDataSourceImplTest {
 
-    private val converter: UserConverter = mock()
+    private val userConverter: UserConverter = mock()
+    private val authConverter: AuthConverter = mock()
     private val api: LoanApi = mock()
 
-    private val auth = AuthData.auth
+    private val auth = AuthData.authEntity
+    private val authDto = AuthData.authDto
     private val userDto = AuthData.userDto
     private val user = AuthData.userEntity
     private val token = AuthData.token
@@ -29,9 +32,10 @@ class AuthRemoteDataSourceImplTest {
     @Test
     fun `registration EXPECT get user`() = runTest {
         val testDispatcher = UnconfinedTestDispatcher(testScheduler)
-        val dataSource = AuthRemoteDataSourceImpl(api, converter, testDispatcher)
-        whenever(api.registration(auth.name, auth.password)) doReturn userDto
-        whenever(converter.revert(userDto)) doReturn user
+        val dataSource = AuthRemoteDataSourceImpl(api, userConverter, authConverter, testDispatcher)
+        whenever(api.registration(authDto)) doReturn userDto
+        whenever(userConverter.revert(userDto)) doReturn user
+        whenever(authConverter.convert(auth)) doReturn authDto
 
         val expected = user
         val actual = dataSource.registration(auth)
@@ -42,8 +46,9 @@ class AuthRemoteDataSourceImplTest {
     @Test
     fun `login EXPECT get user token`() = runTest {
         val testDispatcher = UnconfinedTestDispatcher(testScheduler)
-        val dataSource = AuthRemoteDataSourceImpl(api, converter, testDispatcher)
-        whenever(api.login(auth.name, auth.password)) doReturn token
+        val dataSource = AuthRemoteDataSourceImpl(api, userConverter, authConverter, testDispatcher)
+        whenever(authConverter.convert(auth)) doReturn authDto
+        whenever(api.login(authDto)) doReturn token
 
         val expected = token
         val actual = dataSource.login(auth)

@@ -18,7 +18,7 @@ class RegistrationUseCaseTest {
     private val useCase = RegistrationUseCase(repository)
 
     private val user = AuthData.userEntity
-    private val auth = AuthData.auth
+    private val auth = AuthData.authEntity
 
     @Test
     fun `should return correct user data`() = runTest {

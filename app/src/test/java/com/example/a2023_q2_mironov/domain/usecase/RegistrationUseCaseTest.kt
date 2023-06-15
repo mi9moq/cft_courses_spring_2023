@@ -17,7 +17,7 @@ class RegistrationUseCaseTest {
     private val repository: AuthRepository = mock()
     private val useCase = RegistrationUseCase(repository)
 
-    private val user = AuthData.user
+    private val user = AuthData.userEntity
     private val auth = AuthData.auth
 
     @Test

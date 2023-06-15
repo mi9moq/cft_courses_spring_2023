@@ -3,10 +3,7 @@ package com.example.a2023_q2_mironov.data.converter
 import com.example.a2023_q2_mironov.utils.AuthData
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.extension.ExtendWith
-import org.mockito.junit.jupiter.MockitoExtension
 
-@ExtendWith(MockitoExtension::class)
 class UserConverterTest {
 
     private val converter = UserConverter()

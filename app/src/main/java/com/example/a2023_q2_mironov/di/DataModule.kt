@@ -2,9 +2,13 @@ package com.example.a2023_q2_mironov.di
 
 import com.example.a2023_q2_mironov.data.datasource.AuthRemoteDataSource
 import com.example.a2023_q2_mironov.data.datasource.AuthRemoteDataSourceImpl
+import com.example.a2023_q2_mironov.data.datasource.TokenLocalDataSource
+import com.example.a2023_q2_mironov.data.datasource.TokenLocalDataSourceImpl
 import com.example.a2023_q2_mironov.data.network.LoanApi
 import com.example.a2023_q2_mironov.data.repository.AuthRepositoryImpl
+import com.example.a2023_q2_mironov.data.repository.UserTokenRepositoryImpl
 import com.example.a2023_q2_mironov.domain.repository.AuthRepository
+import com.example.a2023_q2_mironov.domain.repository.UserTokenRepository
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -23,7 +27,15 @@ interface DataModule {
 
     @AppScope
     @Binds
-    fun bindRemoteDataSource(impl: AuthRemoteDataSourceImpl): AuthRemoteDataSource
+    fun bindUserTokenRepository(impl: UserTokenRepositoryImpl): UserTokenRepository
+
+    @AppScope
+    @Binds
+    fun bindAuthRemoteDataSource(impl: AuthRemoteDataSourceImpl): AuthRemoteDataSource
+
+    @AppScope
+    @Binds
+    fun bindTokenLocalDataSource(impl: TokenLocalDataSourceImpl): TokenLocalDataSource
 
     companion object {
 

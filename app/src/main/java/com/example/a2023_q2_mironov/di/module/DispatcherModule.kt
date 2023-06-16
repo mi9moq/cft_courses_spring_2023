@@ -1,5 +1,7 @@
-package com.example.a2023_q2_mironov.di
+package com.example.a2023_q2_mironov.di.module
 
+import com.example.a2023_q2_mironov.di.AppScope
+import com.example.a2023_q2_mironov.di.IoDispatcher
 import dagger.Module
 import dagger.Provides
 import kotlinx.coroutines.CoroutineDispatcher

@@ -5,6 +5,7 @@ import com.example.a2023_q2_mironov.LoanApp
 import com.example.a2023_q2_mironov.MainActivity
 import com.example.a2023_q2_mironov.di.module.AuthModule
 import com.example.a2023_q2_mironov.di.module.DispatcherModule
+import com.example.a2023_q2_mironov.di.module.LoanModule
 import com.example.a2023_q2_mironov.di.module.NetworkModule
 import com.example.a2023_q2_mironov.di.module.UserModule
 import dagger.BindsInstance
@@ -16,6 +17,7 @@ import dagger.Component
     AuthModule::class,
     NetworkModule::class,
     UserModule::class,
+    LoanModule::class,
 ])
 interface AppComponent {
 

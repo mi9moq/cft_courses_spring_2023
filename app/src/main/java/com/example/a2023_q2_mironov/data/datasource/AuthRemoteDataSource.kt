@@ -29,6 +29,7 @@ class AuthRemoteDataSourceImpl @Inject constructor(
     }
 
     override suspend fun login(auth: Auth): String = withContext(ioDispatcher) {
-        loanApi.login(authConverter.convert(auth))
+        val response = loanApi.login(authConverter.convert(auth))
+        response.body()!!.string()
     }
 }

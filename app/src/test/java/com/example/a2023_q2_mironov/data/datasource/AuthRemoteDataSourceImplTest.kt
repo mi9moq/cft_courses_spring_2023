@@ -7,6 +7,7 @@ import com.example.a2023_q2_mironov.utils.AuthData
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
+import okhttp3.ResponseBody.Companion.toResponseBody
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
@@ -14,6 +15,7 @@ import org.mockito.junit.jupiter.MockitoExtension
 import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
+import retrofit2.Response
 
 @OptIn(ExperimentalCoroutinesApi::class)
 @ExtendWith(MockitoExtension::class)
@@ -28,6 +30,9 @@ class AuthRemoteDataSourceImplTest {
     private val userDto = AuthData.userDto
     private val user = AuthData.userEntity
     private val token = AuthData.token
+
+    private val responseBody = token.toResponseBody(null)
+    private val response = Response.success(responseBody)
 
     @Test
     fun `registration EXPECT get user`() = runTest {
@@ -48,7 +53,7 @@ class AuthRemoteDataSourceImplTest {
         val testDispatcher = UnconfinedTestDispatcher(testScheduler)
         val dataSource = AuthRemoteDataSourceImpl(api, userConverter, authConverter, testDispatcher)
         whenever(authConverter.convert(auth)) doReturn authDto
-        whenever(api.login(authDto)) doReturn token
+        whenever(api.login(authDto)) doReturn response
 
         val expected = token
         val actual = dataSource.login(auth)

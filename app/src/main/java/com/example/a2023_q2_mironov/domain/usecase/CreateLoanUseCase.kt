@@ -7,5 +7,6 @@ import javax.inject.Inject
 class CreateLoanUseCase @Inject constructor(
     private val repository: LoanRepository
 ) {
-    suspend operator fun invoke(loan: LoanRequest) = repository.createLoan(loan)
+    suspend operator fun invoke(userToken: String, loan: LoanRequest) =
+        repository.createLoan(userToken, loan)
 }

@@ -7,5 +7,5 @@ import javax.inject.Inject
 class GetAllLoansUseCase @Inject constructor(
     private val repository: LoanRepository
 ) {
-    suspend operator fun invoke(): List<Loan> = repository.getAllLoans()
+    suspend operator fun invoke(userToken: String): List<Loan> = repository.getAllLoans(userToken)
 }

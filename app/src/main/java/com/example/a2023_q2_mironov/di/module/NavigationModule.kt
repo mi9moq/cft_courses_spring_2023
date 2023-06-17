@@ -1,14 +1,14 @@
 package com.example.a2023_q2_mironov.di.module
 
 import com.example.a2023_q2_mironov.di.AppScope
-import com.example.a2023_q2_mironov.navigation.impl.WelcomeRouterImpl
 import com.example.a2023_q2_mironov.navigation.router.WelcomeRouter
+import com.example.a2023_q2_mironov.navigation.router.WelcomeRouterImpl
 import com.github.terrakok.cicerone.Cicerone
-import com.github.terrakok.cicerone.Router
-import dagger.Module
 import com.github.terrakok.cicerone.Cicerone.Companion.create
 import com.github.terrakok.cicerone.NavigatorHolder
+import com.github.terrakok.cicerone.Router
 import dagger.Binds
+import dagger.Module
 import dagger.Provides
 
 @Module

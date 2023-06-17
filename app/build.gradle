@@ -70,4 +70,6 @@ dependencies {
     testImplementation"org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
     testImplementation"org.mockito.kotlin:mockito-kotlin:4.1.0"
     testImplementation"org.mockito:mockito-junit-jupiter:5.2.0"
+
+    implementation"com.github.terrakok:cicerone:7.1"
 }

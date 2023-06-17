@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">2023_q2_mironov</string>
+    <string name="app_name">My Loans</string>
+    <string name="login">Login</string>
+    <string name="name">Name</string>
+    <string name="password">Password</string>
+    <string name="registration">Registration</string>
 </resources>

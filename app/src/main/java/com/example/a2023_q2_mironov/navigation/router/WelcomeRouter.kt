@@ -1,6 +1,7 @@
 package com.example.a2023_q2_mironov.navigation.router
 
 import com.example.a2023_q2_mironov.navigation.screen.getLoginScreen
+import com.example.a2023_q2_mironov.navigation.screen.getRegistrationScreen
 import com.github.terrakok.cicerone.Router
 import javax.inject.Inject
 
@@ -22,7 +23,7 @@ class WelcomeRouterImpl @Inject constructor(
     }
 
     override fun openRegistration() {
-        TODO("Not yet implemented")
+        router.navigateTo(getRegistrationScreen())
     }
 
     override fun openMain() {

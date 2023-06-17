@@ -11,6 +11,7 @@ import com.example.a2023_q2_mironov.di.module.UserModule
 import com.example.a2023_q2_mironov.di.module.ViewModelModule
 import com.example.a2023_q2_mironov.ui.LoginFragment
 import com.example.a2023_q2_mironov.ui.MainActivity
+import com.example.a2023_q2_mironov.ui.RegistrationFragment
 import com.example.a2023_q2_mironov.ui.WelcomeFragment
 import dagger.BindsInstance
 import dagger.Component
@@ -36,6 +37,8 @@ interface AppComponent {
     fun inject(fragment: WelcomeFragment)
 
     fun inject(fragment: LoginFragment)
+
+    fun inject(fragment: RegistrationFragment)
 
     @Component.Factory
     interface Factory {

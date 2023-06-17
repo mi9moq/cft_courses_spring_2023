@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class LoanConverter @Inject constructor() {
 
-    fun convert(from: LoanDto): Loan =
+    fun revert(from: LoanDto): Loan =
         Loan(
             amount = from.amount,
             firstName = from.firstName,
@@ -19,7 +19,7 @@ class LoanConverter @Inject constructor() {
             status = from.status
         )
 
-    fun revert(from: Loan): LoanDto =
+    fun convert(from: Loan): LoanDto =
         LoanDto(
             amount = from.amount,
             firstName = from.firstName,

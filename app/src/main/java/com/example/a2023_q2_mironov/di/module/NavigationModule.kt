@@ -3,6 +3,8 @@ package com.example.a2023_q2_mironov.di.module
 import com.example.a2023_q2_mironov.di.AppScope
 import com.example.a2023_q2_mironov.navigation.router.LoginRouter
 import com.example.a2023_q2_mironov.navigation.router.LoginRouterImpl
+import com.example.a2023_q2_mironov.navigation.router.MainRouter
+import com.example.a2023_q2_mironov.navigation.router.MainRouterImpl
 import com.example.a2023_q2_mironov.navigation.router.RegistrationRouter
 import com.example.a2023_q2_mironov.navigation.router.RegistrationRouterImpl
 import com.example.a2023_q2_mironov.navigation.router.WelcomeRouter
@@ -46,4 +48,8 @@ interface NavigationModule {
     @Binds
     @AppScope
     fun bindLoginRouter(impl: LoginRouterImpl): LoginRouter
+
+    @Binds
+    @AppScope
+    fun bindMainRouter(impl: MainRouterImpl): MainRouter
 }

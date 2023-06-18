@@ -28,7 +28,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="У вас нет займов" />
+        tools:text="У вас нет займов"
+        android:text="@string/you_don_t_have_loans"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/history_list"

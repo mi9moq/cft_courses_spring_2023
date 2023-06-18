@@ -15,4 +15,11 @@
     <string name="get_a_loan">Take out a loan</string>
     <string name="loan_history">loan history</string>
     <string name="you_don_t_have_loans">you don\'t have loans:)</string>
+    <string name="amount">Amount</string>
+    <string name="status">status</string>
+    <string name="percent">Percent</string>
+    <string name="period">Period</string>
+    <string name="date">Date</string>
+    <string name="surname">Surname</string>
+    <string name="phone_number">Phone number</string>
 </resources>

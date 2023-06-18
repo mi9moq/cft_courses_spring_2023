@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.a2023_q2_mironov.domain.usecase.GetAllLoansUseCase
 import com.example.a2023_q2_mironov.domain.usecase.GetUserTokenUseCase
+import com.example.a2023_q2_mironov.navigation.router.HistoryRouter
 import com.example.a2023_q2_mironov.presentation.ErrorType
 import com.example.a2023_q2_mironov.presentation.history.HistoryState.*
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -18,7 +19,8 @@ import javax.inject.Inject
 
 class HistoryViewModel @Inject constructor(
     private val getAllLoansUseCase: GetAllLoansUseCase,
-    private val getUserTokenUseCase: GetUserTokenUseCase
+    private val getUserTokenUseCase: GetUserTokenUseCase,
+    private val router: HistoryRouter
 ) : ViewModel() {
 
     private val _state: MutableLiveData<HistoryState> = MutableLiveData(Initial)
@@ -45,7 +47,7 @@ class HistoryViewModel @Inject constructor(
     }
 
     fun openLoanDetail(id: Long) {
-        // TODO navigate to loan by Id
+        router.openDetails(id)
     }
 
     private fun loadHistory() {

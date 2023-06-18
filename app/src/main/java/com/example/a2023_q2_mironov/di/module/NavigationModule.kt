@@ -1,6 +1,8 @@
 package com.example.a2023_q2_mironov.di.module
 
 import com.example.a2023_q2_mironov.di.AppScope
+import com.example.a2023_q2_mironov.navigation.router.HistoryRouter
+import com.example.a2023_q2_mironov.navigation.router.HistoryRouterImpl
 import com.example.a2023_q2_mironov.navigation.router.LoginRouter
 import com.example.a2023_q2_mironov.navigation.router.LoginRouterImpl
 import com.example.a2023_q2_mironov.navigation.router.MainRouter
@@ -52,4 +54,8 @@ interface NavigationModule {
     @Binds
     @AppScope
     fun bindMainRouter(impl: MainRouterImpl): MainRouter
+
+    @Binds
+    @AppScope
+    fun bindHistoryRouter(impl: HistoryRouterImpl): HistoryRouter
 }

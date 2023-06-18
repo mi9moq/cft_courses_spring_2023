@@ -12,7 +12,7 @@ import com.example.a2023_q2_mironov.presentation.ViewModelFactory
 import com.example.a2023_q2_mironov.presentation.main.MainViewModel
 import javax.inject.Inject
 
-class MainFragment: Fragment() {
+class MainFragment : Fragment() {
 
     companion object {
         fun newInstance() = MainFragment()
@@ -53,7 +53,17 @@ class MainFragment: Fragment() {
     }
 
     private fun setupClickListeners() {
-
+        with(binding) {
+            guid.setOnClickListener {
+                viewModel.showGuid()
+            }
+            newLoan.setOnClickListener {
+                viewModel.creteLoan()
+            }
+            history.setOnClickListener {
+                viewModel.showHistory()
+            }
+        }
     }
 
     override fun onDestroyView() {

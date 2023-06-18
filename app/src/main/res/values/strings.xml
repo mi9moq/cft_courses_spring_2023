@@ -4,4 +4,8 @@
     <string name="name">Name</string>
     <string name="password">Password</string>
     <string name="registration">Registration</string>
+    <string name="empty_field">empty field</string>
+    <string name="wrong_log_or_pas">wrong login or password</string>
+    <string name="unknown_error">Unknown error</string>
+    <string name="connection_error">Connection error, please check your internet connection</string>
 </resources>

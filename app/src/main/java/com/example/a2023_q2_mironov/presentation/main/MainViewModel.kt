@@ -6,17 +6,17 @@ import javax.inject.Inject
 
 class MainViewModel @Inject constructor(
     private val router: MainRouter
-): ViewModel() {
+) : ViewModel() {
 
-    fun showHistory(){
-        //TODO(router.openHistory())
+    fun showHistory() {
+        router.openHistory()
     }
 
-    fun showGuid(){
+    fun showGuid() {
         //TODO(router.openGuid())
     }
 
-    fun creteLoan(){
+    fun creteLoan() {
         //TODO(router.openCreate())
     }
 }

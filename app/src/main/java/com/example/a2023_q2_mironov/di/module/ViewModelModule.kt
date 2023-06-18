@@ -2,6 +2,7 @@ package com.example.a2023_q2_mironov.di.module
 
 import androidx.lifecycle.ViewModel
 import com.example.a2023_q2_mironov.di.ViewModelKey
+import com.example.a2023_q2_mironov.presentation.history.HistoryViewModel
 import com.example.a2023_q2_mironov.presentation.login.LoginViewModel
 import com.example.a2023_q2_mironov.presentation.main.MainViewModel
 import com.example.a2023_q2_mironov.presentation.registration.RegistrationViewModel
@@ -32,4 +33,9 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(MainViewModel::class)
     fun bindMainViewModel(impl: MainViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(HistoryViewModel::class)
+    fun bindHistoryViewModel(impl: HistoryViewModel): ViewModel
 }

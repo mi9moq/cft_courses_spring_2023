@@ -1,5 +1,6 @@
 package com.example.a2023_q2_mironov.navigation.router
 
+import com.example.a2023_q2_mironov.navigation.screen.getHistoryScreen
 import com.github.terrakok.cicerone.Router
 import javax.inject.Inject
 
@@ -17,7 +18,7 @@ class MainRouterImpl @Inject constructor(
 ):MainRouter {
 
     override fun openHistory() {
-        TODO("Not yet implemented")
+        router.navigateTo(getHistoryScreen())
     }
 
     override fun openGuid() {

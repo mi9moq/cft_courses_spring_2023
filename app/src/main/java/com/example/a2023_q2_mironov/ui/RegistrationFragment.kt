@@ -102,6 +102,11 @@ class RegistrationFragment : Fragment() {
                 val message = getString(R.string.connection_error)
                 showToast(message)
             }
+
+            ErrorType.REGISTRATION -> {
+                val message = getString(R.string.registration_error)
+                showToast(message)
+            }
         }
     }
 

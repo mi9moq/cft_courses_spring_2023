@@ -4,5 +4,6 @@ enum class ErrorType {
     UNAUTHORIZED,
     NOT_FOUND,
     UNKNOWN,
-    CONNECTION
+    CONNECTION,
+    REGISTRATION
 }

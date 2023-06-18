@@ -107,6 +107,8 @@ class LoginFragment : Fragment() {
                 val message = getString(R.string.connection_error)
                 showToast(message)
             }
+
+            ErrorType.REGISTRATION -> Unit
         }
     }
 

@@ -8,4 +8,5 @@
     <string name="wrong_log_or_pas">wrong login or password</string>
     <string name="unknown_error">Unknown error</string>
     <string name="connection_error">Connection error, please check your internet connection</string>
+    <string name="registration_error">User with the same name already exists</string>
 </resources>

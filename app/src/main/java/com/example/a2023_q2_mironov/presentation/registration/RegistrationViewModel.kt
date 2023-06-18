@@ -15,6 +15,7 @@ import com.example.a2023_q2_mironov.presentation.registration.RegistrationState.
 import com.example.a2023_q2_mironov.presentation.registration.RegistrationState.Loading
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
 import java.net.ConnectException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
@@ -39,6 +40,11 @@ class RegistrationViewModel @Inject constructor(
 
     private val handler = CoroutineExceptionHandler { _, throwable ->
         when (throwable) {
+            is HttpException -> {
+                if(throwable.code() == 400){
+                    _state.value = RegistrationState.Error(ErrorType.REGISTRATION)
+                }
+            }
             is UnknownHostException -> _state.value = RegistrationState.Error(ErrorType.CONNECTION)
             is SocketTimeoutException -> _state.value =
                 RegistrationState.Error(ErrorType.CONNECTION)

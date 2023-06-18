@@ -1,7 +1,6 @@
 package com.example.a2023_q2_mironov.data.network.model
 
 import com.google.gson.annotations.SerializedName
-import java.time.LocalDateTime
 
 data class LoanDto(
     val amount: Long,
@@ -11,7 +10,7 @@ data class LoanDto(
     val period: Int,
     val phoneNumber: String,
     val id: Long,
-    val date: LocalDateTime,
+    val date: String,
     @SerializedName("state")
     val status: String
 )

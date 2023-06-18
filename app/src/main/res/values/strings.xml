@@ -9,4 +9,7 @@
     <string name="unknown_error">Unknown error</string>
     <string name="connection_error">Connection error, please check your internet connection</string>
     <string name="registration_error">User with the same name already exists</string>
+    <string name="how_to_use">How to use?</string>
+    <string name="get_a_loan">get a loan</string>
+    <string name="loan_history">loan history</string>
 </resources>

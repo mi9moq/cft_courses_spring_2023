@@ -3,6 +3,7 @@ package com.example.a2023_q2_mironov.di.module
 import androidx.lifecycle.ViewModel
 import com.example.a2023_q2_mironov.di.ViewModelKey
 import com.example.a2023_q2_mironov.presentation.login.LoginViewModel
+import com.example.a2023_q2_mironov.presentation.main.MainViewModel
 import com.example.a2023_q2_mironov.presentation.registration.RegistrationViewModel
 import com.example.a2023_q2_mironov.presentation.welcom.WelcomeViewModel
 import dagger.Binds
@@ -26,4 +27,9 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(RegistrationViewModel::class)
     fun bindRegistrationViewModel(impl: RegistrationViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(MainViewModel::class)
+    fun bindMainViewModel(impl: MainViewModel): ViewModel
 }

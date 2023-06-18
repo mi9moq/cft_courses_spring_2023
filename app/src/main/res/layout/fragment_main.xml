@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/instruction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/how_to_use"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/new_loan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/get_a_loan"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/history"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/loan_history"/>
+
+</LinearLayout>

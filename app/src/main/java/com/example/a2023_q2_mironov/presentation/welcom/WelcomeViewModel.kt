@@ -12,7 +12,7 @@ class WelcomeViewModel @Inject constructor(
 
     fun login() {
         if (getUserTokenUseCase().userToken.isNotBlank()) {
-            //TODO навигироваться на главный экран
+            router.openMain()
         } else {
             router.openLogin()
         }

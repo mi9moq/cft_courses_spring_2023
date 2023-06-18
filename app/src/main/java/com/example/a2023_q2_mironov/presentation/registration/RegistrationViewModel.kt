@@ -65,7 +65,7 @@ class RegistrationViewModel @Inject constructor(
                 registrationUseCase(auth)
                 val token = loginUseCase(auth)
                 setUserTokenUseCase(AccessUserToken(token))
-//                TODO router.openMain()
+                router.openMain()
             }
         }
     }

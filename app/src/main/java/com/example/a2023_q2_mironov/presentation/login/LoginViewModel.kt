@@ -52,7 +52,7 @@ class LoginViewModel @Inject constructor(
                 _state.value = Loading
                 val token = loginUseCase(auth)
                 setUserTokenUseCase(AccessUserToken(token))
-//                TODO router.openMain()
+                router.openMain()
             }
         }
     }

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/left_guideline"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/right_guideline"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/middle_guideline"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/conditions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/loan_conditions"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/max_amount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="@string/maximum_amount"
+        app:layout_constraintEnd_toStartOf="@id/middle_guideline"
+        app:layout_constraintStart_toEndOf="@id/left_guideline"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/max_amount_value"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        app:layout_constraintEnd_toEndOf="@id/right_guideline"
+        app:layout_constraintStart_toEndOf="@id/middle_guideline"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@tools:sample/lorem" />
+
+    <TextView
+        android:id="@+id/percent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/percent"
+        app:layout_constraintEnd_toStartOf="@id/middle_guideline"
+        app:layout_constraintStart_toEndOf="@id/left_guideline"
+        app:layout_constraintTop_toBottomOf="@+id/max_amount" />
+
+    <TextView
+        android:id="@+id/percent_value"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@id/right_guideline"
+        app:layout_constraintStart_toEndOf="@id/middle_guideline"
+        app:layout_constraintTop_toBottomOf="@+id/max_amount_value"
+        tools:text="@tools:sample/lorem" />
+
+    <TextView
+        android:id="@+id/period"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/period"
+        app:layout_constraintEnd_toStartOf="@id/middle_guideline"
+        app:layout_constraintStart_toEndOf="@id/left_guideline"
+        app:layout_constraintTop_toBottomOf="@+id/percent" />
+
+    <TextView
+        android:id="@+id/period_value"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@id/right_guideline"
+        app:layout_constraintStart_toEndOf="@id/middle_guideline"
+        app:layout_constraintTop_toBottomOf="@+id/percent_value"
+        tools:text="@tools:sample/lorem" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_amount"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toStartOf="@id/right_guideline"
+        app:layout_constraintStart_toEndOf="@id/left_guideline"
+        app:layout_constraintTop_toBottomOf="@+id/period">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/amount"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_first_name"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toStartOf="@id/right_guideline"
+        app:layout_constraintStart_toEndOf="@id/left_guideline"
+        app:layout_constraintTop_toBottomOf="@+id/til_amount">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_first_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/name"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_last_name"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toStartOf="@id/right_guideline"
+        app:layout_constraintStart_toEndOf="@id/left_guideline"
+        app:layout_constraintTop_toBottomOf="@+id/til_first_name">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_last_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/surname"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_phone_number"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toStartOf="@id/right_guideline"
+        app:layout_constraintStart_toEndOf="@id/left_guideline"
+        app:layout_constraintTop_toBottomOf="@+id/til_last_name">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_phone_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/phone_number"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

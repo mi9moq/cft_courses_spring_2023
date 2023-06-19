@@ -1,5 +1,6 @@
 package com.example.a2023_q2_mironov.navigation.router
 
+import com.example.a2023_q2_mironov.navigation.screen.getConditionScreen
 import com.example.a2023_q2_mironov.navigation.screen.getHistoryScreen
 import com.github.terrakok.cicerone.Router
 import javax.inject.Inject
@@ -26,6 +27,6 @@ class MainRouterImpl @Inject constructor(
     }
 
     override fun openCreate() {
-        TODO("Not yet implemented")
+        router.navigateTo(getConditionScreen())
     }
 }

@@ -9,6 +9,7 @@ import com.example.a2023_q2_mironov.di.module.NavigationModule
 import com.example.a2023_q2_mironov.di.module.NetworkModule
 import com.example.a2023_q2_mironov.di.module.UserModule
 import com.example.a2023_q2_mironov.di.module.ViewModelModule
+import com.example.a2023_q2_mironov.ui.CreateLoanFragment
 import com.example.a2023_q2_mironov.ui.DetailsFragment
 import com.example.a2023_q2_mironov.ui.HistoryFragment
 import com.example.a2023_q2_mironov.ui.LoginFragment
@@ -48,6 +49,8 @@ interface AppComponent {
     fun inject(fragment: HistoryFragment)
 
     fun inject(fragment: DetailsFragment)
+
+    fun inject(fragment: CreateLoanFragment)
 
     @Component.Factory
     interface Factory {

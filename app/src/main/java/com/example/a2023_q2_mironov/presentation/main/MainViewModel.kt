@@ -17,6 +17,6 @@ class MainViewModel @Inject constructor(
     }
 
     fun creteLoan() {
-        //TODO(router.openCreate())
+        router.openCreate()
     }
 }

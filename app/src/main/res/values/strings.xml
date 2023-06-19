@@ -5,6 +5,7 @@
     <string name="password">Password</string>
     <string name="registration">Registration</string>
     <string name="empty_field">empty field</string>
+    <string name="invalid_value">Invalid value</string>
     <string name="wrong_log_or_pas">wrong login or password</string>
     <string name="unknown_error">Unknown error</string>
     <string name="not_found_error">Page not found</string>
@@ -22,4 +23,7 @@
     <string name="date">Date</string>
     <string name="surname">Surname</string>
     <string name="phone_number">Phone number</string>
+    <string name="loan_conditions">Read the terms of the loan</string>
+    <string name="maximum_amount">Maximum Amount</string>
+    <string name="next">next</string>
 </resources>

@@ -69,7 +69,7 @@ class CreateLoanFragment : Fragment() {
                 viewModel.creteLoan(
                     inputName = etFirstName.text.toString(),
                     inputSurname = etLastName.text.toString(),
-                    inputAmount = etPhoneNumber.text.toString(),
+                    inputAmount = etAmount.text.toString(),
                     inputNumber = etPhoneNumber.text.toString()
                 )
             }

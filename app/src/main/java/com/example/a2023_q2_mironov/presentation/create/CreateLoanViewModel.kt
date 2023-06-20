@@ -1,12 +1,15 @@
 package com.example.a2023_q2_mironov.presentation.create
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.a2023_q2_mironov.domain.entity.LoanConditions
+import com.example.a2023_q2_mironov.domain.entity.LoanRequest
 import com.example.a2023_q2_mironov.domain.usecase.GetLoanConditionsUseCase
 import com.example.a2023_q2_mironov.domain.usecase.GetUserTokenUseCase
+import com.example.a2023_q2_mironov.navigation.router.CreateRouter
 import com.example.a2023_q2_mironov.presentation.create.CreateLoanState.Content
 import com.example.a2023_q2_mironov.presentation.create.CreateLoanState.Initial
 import com.example.a2023_q2_mironov.presentation.create.CreateLoanState.Loading
@@ -16,6 +19,7 @@ import javax.inject.Inject
 class CreateLoanViewModel @Inject constructor(
     private val getLoanConditionUseCase: GetLoanConditionsUseCase,
     private val getUserTokenUseCase: GetUserTokenUseCase,
+    private val router: CreateRouter
 ) : ViewModel() {
 
     private val _state: MutableLiveData<CreateLoanState> = MutableLiveData(Initial)
@@ -54,12 +58,21 @@ class CreateLoanViewModel @Inject constructor(
         val name = parseInput(inputName)
         val surname = parseInput(inputSurname)
         val amount = parseAmount(inputAmount)
+        Log.d("CreateLoanViewModel", amount.toString())
         val phoneNumber = parseInput(inputNumber)
 
         val fieldsValid = validateInput(name, surname, amount, phoneNumber)
 
         if (fieldsValid) {
-            //TODO подтвердить данные
+            val request = LoanRequest(
+                amount = amount,
+                firstName = name,
+                lastName = surname,
+                period = conditions.period,
+                percent = conditions.percent,
+                phoneNumber = phoneNumber
+            )
+            router.openConfirm(request)
         }
     }
 

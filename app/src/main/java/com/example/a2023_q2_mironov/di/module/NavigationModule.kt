@@ -1,6 +1,8 @@
 package com.example.a2023_q2_mironov.di.module
 
 import com.example.a2023_q2_mironov.di.AppScope
+import com.example.a2023_q2_mironov.navigation.router.CreateRouter
+import com.example.a2023_q2_mironov.navigation.router.CreateRouterImpl
 import com.example.a2023_q2_mironov.navigation.router.GuidRouter
 import com.example.a2023_q2_mironov.navigation.router.GuidRouterImpl
 import com.example.a2023_q2_mironov.navigation.router.HistoryRouter
@@ -64,4 +66,8 @@ interface NavigationModule {
     @Binds
     @AppScope
     fun bindGuidRouter(impl: GuidRouterImpl): GuidRouter
+
+    @Binds
+    @AppScope
+    fun bindCreateRouter(impl: CreateRouterImpl): CreateRouter
 }

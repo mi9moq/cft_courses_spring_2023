@@ -11,6 +11,7 @@
         android:text="@string/how_to_use"
         android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"
+        android:drawableLeft="@drawable/ic_user_guide"
         android:layout_marginEnd="16dp"/>
 
     <com.google.android.material.button.MaterialButton
@@ -19,6 +20,7 @@
         android:layout_height="wrap_content"
         android:text="@string/get_a_loan"
         android:layout_marginTop="16dp"
+        android:drawableLeft="@drawable/ic_create_loan"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"/>
 

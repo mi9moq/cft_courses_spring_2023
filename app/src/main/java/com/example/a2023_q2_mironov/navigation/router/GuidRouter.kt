@@ -14,6 +14,6 @@ class GuidRouterImpl @Inject constructor(
 ) : GuidRouter {
 
     override fun openMain() {
-        router.newRootScreen(getMainScreen())
+        router.backTo(getMainScreen())
     }
 }

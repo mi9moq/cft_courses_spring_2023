@@ -14,6 +14,7 @@ import com.example.a2023_q2_mironov.ui.CreateLoanFragment
 import com.example.a2023_q2_mironov.ui.DetailsFragment
 import com.example.a2023_q2_mironov.ui.GuidFragment
 import com.example.a2023_q2_mironov.ui.HistoryFragment
+import com.example.a2023_q2_mironov.ui.LoanApprovedFragment
 import com.example.a2023_q2_mironov.ui.LoginFragment
 import com.example.a2023_q2_mironov.ui.MainActivity
 import com.example.a2023_q2_mironov.ui.MainFragment
@@ -57,6 +58,8 @@ interface AppComponent {
     fun inject(fragment: GuidFragment)
 
     fun inject(fragment: ConfirmLoanFragment)
+
+    fun inject(fragment: LoanApprovedFragment)
 
     @Component.Factory
     interface Factory {

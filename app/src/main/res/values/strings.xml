@@ -32,4 +32,6 @@
     <string name="guid_confirm">Confirm your information and complete the loan application</string>
     <string name="guid_finish">The loan has been successfully processed</string>
     <string name="confirm">confirm</string>
+    <string name="loan_approved">The loan has been successfully approved</string>
+    <string name="main_screen">main screen</string>
 </resources>

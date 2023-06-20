@@ -2,6 +2,7 @@ package com.example.a2023_q2_mironov.di.module
 
 import androidx.lifecycle.ViewModel
 import com.example.a2023_q2_mironov.di.ViewModelKey
+import com.example.a2023_q2_mironov.presentation.approved.LoanApprovedViewModel
 import com.example.a2023_q2_mironov.presentation.confirm.ConfirmLoanViewModel
 import com.example.a2023_q2_mironov.presentation.create.CreateLoanViewModel
 import com.example.a2023_q2_mironov.presentation.details.DetailsViewModel
@@ -62,4 +63,9 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(ConfirmLoanViewModel::class)
     fun bindConfirmLoanViewModel(impl: ConfirmLoanViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(LoanApprovedViewModel::class)
+    fun bindLoanApprovedViewModel(impl: LoanApprovedViewModel): ViewModel
 }

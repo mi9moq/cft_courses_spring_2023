@@ -1,6 +1,5 @@
 package com.example.a2023_q2_mironov.presentation.create
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,10 +9,17 @@ import com.example.a2023_q2_mironov.domain.entity.LoanRequest
 import com.example.a2023_q2_mironov.domain.usecase.GetLoanConditionsUseCase
 import com.example.a2023_q2_mironov.domain.usecase.GetUserTokenUseCase
 import com.example.a2023_q2_mironov.navigation.router.CreateRouter
+import com.example.a2023_q2_mironov.presentation.ErrorType
 import com.example.a2023_q2_mironov.presentation.create.CreateLoanState.Content
+import com.example.a2023_q2_mironov.presentation.create.CreateLoanState.Error
 import com.example.a2023_q2_mironov.presentation.create.CreateLoanState.Initial
 import com.example.a2023_q2_mironov.presentation.create.CreateLoanState.Loading
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
+import java.net.ConnectException
+import java.net.SocketTimeoutException
+import java.net.UnknownHostException
 import javax.inject.Inject
 
 class CreateLoanViewModel @Inject constructor(
@@ -37,12 +43,28 @@ class CreateLoanViewModel @Inject constructor(
     private val _errorInputPhoneNumber = MutableLiveData<Boolean>()
     val errorInputPhoneNumber: LiveData<Boolean> = _errorInputPhoneNumber
 
+    private val handler = CoroutineExceptionHandler { _, throwable ->
+        when (throwable) {
+            is UnknownHostException, is SocketTimeoutException, is ConnectException -> _state.value =
+                Error(ErrorType.CONNECTION)
+
+            is HttpException -> {
+                if (throwable.code() == 401)
+                    _state.value = Error(ErrorType.UNAUTHORIZED)
+                else if (throwable.code() == 404)
+                    _state.value = Error(ErrorType.NOT_FOUND)
+            }
+
+            else -> _state.value = Error(ErrorType.UNKNOWN)
+        }
+    }
+
     private val token = getUserTokenUseCase().userToken
 
     private lateinit var conditions: LoanConditions
 
     init {
-        viewModelScope.launch {
+        viewModelScope.launch(handler) {
             _state.value = Loading
             conditions = getLoanConditionUseCase(token)
             _state.value = Content(conditions)
@@ -58,7 +80,6 @@ class CreateLoanViewModel @Inject constructor(
         val name = parseInput(inputName)
         val surname = parseInput(inputSurname)
         val amount = parseAmount(inputAmount)
-        Log.d("CreateLoanViewModel", amount.toString())
         val phoneNumber = parseInput(inputNumber)
 
         val fieldsValid = validateInput(name, surname, amount, phoneNumber)

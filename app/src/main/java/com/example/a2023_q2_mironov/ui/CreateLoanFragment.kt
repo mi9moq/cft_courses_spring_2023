@@ -7,11 +7,13 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.a2023_q2_mironov.R
 import com.example.a2023_q2_mironov.databinding.FragmentCreateLoanBinding
 import com.example.a2023_q2_mironov.domain.entity.LoanConditions
+import com.example.a2023_q2_mironov.presentation.ErrorType
 import com.example.a2023_q2_mironov.presentation.ViewModelFactory
 import com.example.a2023_q2_mironov.presentation.create.CreateLoanState.Content
 import com.example.a2023_q2_mironov.presentation.create.CreateLoanState.Error
@@ -115,19 +117,58 @@ class CreateLoanFragment : Fragment() {
         viewModel.state.observe(viewLifecycleOwner) { state ->
             when (state) {
                 Initial -> Unit
-                Loading -> Unit //TODO обработать загрузку
+                Loading -> launchLoadingState()
                 is Content -> launchContentState(state.condition)
-                is Error -> Unit //TODO обработать ошибки
+                is Error -> launchErrorState(state.type)
             }
         }
     }
 
     private fun launchContentState(conditions: LoanConditions) {
         with(binding) {
+            progressBar.visibility = View.GONE
+            container.visibility = View.VISIBLE
             maxAmountValue.text = conditions.maxAmount.toString()
             percentValue.text = conditions.percent.toString()
             periodValue.text = conditions.period.toString()
         }
+    }
+
+    private fun launchLoadingState() {
+        binding.progressBar.visibility = View.VISIBLE
+        binding.container.visibility = View.GONE
+    }
+
+    private fun launchErrorState(type: ErrorType) {
+        binding.progressBar.visibility = View.GONE
+        binding.container.visibility = View.GONE
+        when (type) {
+            ErrorType.UNAUTHORIZED -> {
+                val message = getString(R.string.authorisation_error)
+                showToast(message)
+            }
+
+            ErrorType.NOT_FOUND -> {
+                val message = getString(R.string.not_found_error)
+                showToast(message)
+            }
+
+            ErrorType.UNKNOWN -> {
+                val message = getString(R.string.unknown_error)
+                showToast(message)
+            }
+
+            ErrorType.CONNECTION -> {
+                val message = getString(R.string.connection_error)
+                showToast(message)
+            }
+
+            ErrorType.REGISTRATION -> Unit
+        }
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
     }
 
     private fun addTextChangeListener() {

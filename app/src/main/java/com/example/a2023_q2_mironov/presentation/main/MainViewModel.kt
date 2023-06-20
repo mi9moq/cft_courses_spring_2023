@@ -13,7 +13,7 @@ class MainViewModel @Inject constructor(
     }
 
     fun showGuid() {
-        //TODO(router.openGuid())
+        router.openGuid()
     }
 
     fun creteLoan() {

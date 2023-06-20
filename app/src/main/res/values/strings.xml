@@ -26,4 +26,9 @@
     <string name="loan_conditions">Read the terms of the loan</string>
     <string name="maximum_amount">Maximum Amount</string>
     <string name="next">next</string>
+    <string name="previous">previous</string>
+    <string name="guid_fill">Familiarize yourself with the terms and fill in the necessary information</string>
+    <string name="guid_start">Click on \'Apply for a loan\' on the main screen</string>
+    <string name="guid_confirm">Confirm your information and complete the loan application</string>
+    <string name="guid_finish">The loan has been successfully processed</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.example.a2023_q2_mironov.navigation.router
 
 import com.example.a2023_q2_mironov.navigation.screen.getConditionScreen
+import com.example.a2023_q2_mironov.navigation.screen.getGuidScreen
 import com.example.a2023_q2_mironov.navigation.screen.getHistoryScreen
 import com.github.terrakok.cicerone.Router
 import javax.inject.Inject
@@ -16,14 +17,14 @@ interface MainRouter {
 
 class MainRouterImpl @Inject constructor(
     private val router: Router
-):MainRouter {
+) : MainRouter {
 
     override fun openHistory() {
         router.navigateTo(getHistoryScreen())
     }
 
     override fun openGuid() {
-        TODO("Not yet implemented")
+        router.navigateTo(getGuidScreen())
     }
 
     override fun openCreate() {

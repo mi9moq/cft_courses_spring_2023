@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.example.a2023_q2_mironov.di.ViewModelKey
 import com.example.a2023_q2_mironov.presentation.create.CreateLoanViewModel
 import com.example.a2023_q2_mironov.presentation.details.DetailsViewModel
+import com.example.a2023_q2_mironov.presentation.guid.GuidViewModel
 import com.example.a2023_q2_mironov.presentation.history.HistoryViewModel
 import com.example.a2023_q2_mironov.presentation.login.LoginViewModel
 import com.example.a2023_q2_mironov.presentation.main.MainViewModel
@@ -50,4 +51,9 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(CreateLoanViewModel::class)
     fun bindCreateLoanViewModel(impl: CreateLoanViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(GuidViewModel::class)
+    fun bindGuidViewModel(impl: GuidViewModel): ViewModel
 }

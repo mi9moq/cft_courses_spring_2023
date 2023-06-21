@@ -128,8 +128,8 @@ class RegistrationFragment : Fragment() {
     }
 
     private fun addTextChangeListener() {
-        binding.etLogin.addTextChangedListener(addTextWatcher { viewModel.resetErrorInputName() })
-        binding.etPassword.addTextChangedListener(addTextWatcher { viewModel.resetErrorInputPassword() })
+        binding.etLogin.addTextChangedListener(addTextWatcher(viewModel::resetErrorInputName))
+        binding.etPassword.addTextChangedListener(addTextWatcher(viewModel::resetErrorInputPassword))
     }
 
     override fun onDestroyView() {

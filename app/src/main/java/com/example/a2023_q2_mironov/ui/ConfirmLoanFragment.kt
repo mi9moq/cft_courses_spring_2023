@@ -3,7 +3,6 @@ package com.example.a2023_q2_mironov.ui
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -139,12 +138,10 @@ class ConfirmLoanFragment : Fragment() {
     private fun parseArguments() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             arguments?.getParcelable(LOAN, LoanRequest::class.java)?.let { loanRequest ->
-                Log.d("parseArguments", loanRequest.toString())
                 viewModel.putLoanRequest(loanRequest)
             }
         } else {
             arguments?.getParcelable<LoanRequest>(LOAN)?.let { loanRequest ->
-                Log.d("parseArguments", loanRequest.toString())
                 viewModel.putLoanRequest(loanRequest)
             }
         }

@@ -172,10 +172,10 @@ class CreateLoanFragment : Fragment() {
 
     private fun addTextChangeListener() {
         with(binding) {
-            etAmount.addTextChangedListener(addTextWatcher { viewModel.resetErrorInputAmount() })
-            etFirstName.addTextChangedListener(addTextWatcher { viewModel.resetErrorInputName() })
-            etLastName.addTextChangedListener(addTextWatcher { viewModel.resetErrorInputSurname() })
-            etPhoneNumber.addTextChangedListener(addTextWatcher { viewModel.resetErrorPhoneNumber() })
+            etAmount.addTextChangedListener(addTextWatcher(viewModel::resetErrorInputAmount))
+            etFirstName.addTextChangedListener(addTextWatcher(viewModel::resetErrorInputName))
+            etLastName.addTextChangedListener(addTextWatcher(viewModel::resetErrorInputSurname))
+            etPhoneNumber.addTextChangedListener(addTextWatcher(viewModel::resetErrorPhoneNumber))
         }
     }
 

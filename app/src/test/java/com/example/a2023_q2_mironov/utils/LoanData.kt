@@ -69,4 +69,5 @@ object LoanData {
     )
 
     val loansList: List<Loan> = listOf(loanEntity)
+    val loansDtoList: List<LoanDto> = listOf(loanDto)
 }

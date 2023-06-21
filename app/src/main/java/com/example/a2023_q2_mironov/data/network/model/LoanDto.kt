@@ -1,5 +1,6 @@
 package com.example.a2023_q2_mironov.data.network.model
 
+import com.example.a2023_q2_mironov.domain.entity.LoanStatus
 import com.google.gson.annotations.SerializedName
 
 data class LoanDto(
@@ -11,6 +12,6 @@ data class LoanDto(
     val phoneNumber: String,
     val id: Long,
     val date: String,
-    @SerializedName("state")
-    val status: String
+    @field:SerializedName("state")
+    val status: LoanStatus
 )

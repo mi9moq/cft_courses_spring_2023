@@ -15,6 +15,7 @@ import com.example.a2023_q2_mironov.presentation.ErrorType
 import com.example.a2023_q2_mironov.presentation.details.DetailsViewModel
 import com.example.a2023_q2_mironov.presentation.ViewModelFactory
 import com.example.a2023_q2_mironov.presentation.details.DetailsState
+import com.example.a2023_q2_mironov.util.formatLoanStatus
 import javax.inject.Inject
 
 class DetailsFragment : Fragment() {
@@ -88,7 +89,7 @@ class DetailsFragment : Fragment() {
             date.text = loan.date
             amount.text = loan.amount.toString()
             name.text = loan.firstName
-            status.text = loan.status
+            status.text = formatLoanStatus(requireContext(), loan.status)
             surname.text = loan.lastName
             phoneNumber.text = loan.phoneNumber
             percent.text = loan.percent.toString()
@@ -96,12 +97,12 @@ class DetailsFragment : Fragment() {
         }
     }
 
-    private fun launchLoadingState(){
+    private fun launchLoadingState() {
         binding.progressBar.visibility = View.VISIBLE
         binding.container.visibility = View.GONE
     }
 
-    private fun launchErrorState(type: ErrorType){
+    private fun launchErrorState(type: ErrorType) {
         binding.progressBar.visibility = View.GONE
         binding.container.visibility = View.GONE
         when (type) {

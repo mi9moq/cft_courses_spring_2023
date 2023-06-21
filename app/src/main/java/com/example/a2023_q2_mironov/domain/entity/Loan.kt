@@ -9,5 +9,5 @@ data class Loan(
     val phoneNumber: String,
     val id: Long,
     val date: String,
-    val status: String
+    val status: LoanStatus
 )

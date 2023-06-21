@@ -2,8 +2,6 @@ package com.example.a2023_q2_mironov.ui
 
 import android.content.Context
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +16,7 @@ import com.example.a2023_q2_mironov.presentation.login.Error
 import com.example.a2023_q2_mironov.presentation.login.Initial
 import com.example.a2023_q2_mironov.presentation.login.Loading
 import com.example.a2023_q2_mironov.presentation.login.LoginViewModel
+import com.example.a2023_q2_mironov.util.addTextWatcher
 import javax.inject.Inject
 
 class LoginFragment : Fragment() {
@@ -131,24 +130,8 @@ class LoginFragment : Fragment() {
     }
 
     private fun addTextChangeListener() {
-        binding.etLogin.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                viewModel.resetErrorInputName()
-            }
-
-            override fun afterTextChanged(p0: Editable?) {}
-        })
-        binding.etPassword.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                viewModel.resetErrorInputPassword()
-            }
-
-            override fun afterTextChanged(p0: Editable?) {}
-        })
+        binding.etLogin.addTextChangedListener(addTextWatcher { viewModel.resetErrorInputName() })
+        binding.etPassword.addTextChangedListener(addTextWatcher { viewModel.resetErrorInputPassword() })
     }
 
     override fun onDestroyView() {

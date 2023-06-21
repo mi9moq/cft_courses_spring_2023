@@ -2,8 +2,6 @@ package com.example.a2023_q2_mironov.ui
 
 import android.content.Context
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +18,7 @@ import com.example.a2023_q2_mironov.presentation.create.CreateLoanState.Error
 import com.example.a2023_q2_mironov.presentation.create.CreateLoanState.Initial
 import com.example.a2023_q2_mironov.presentation.create.CreateLoanState.Loading
 import com.example.a2023_q2_mironov.presentation.create.CreateLoanViewModel
+import com.example.a2023_q2_mironov.util.addTextWatcher
 import javax.inject.Inject
 
 class CreateLoanFragment : Fragment() {
@@ -177,18 +176,6 @@ class CreateLoanFragment : Fragment() {
             etFirstName.addTextChangedListener(addTextWatcher { viewModel.resetErrorInputName() })
             etLastName.addTextChangedListener(addTextWatcher { viewModel.resetErrorInputSurname() })
             etPhoneNumber.addTextChangedListener(addTextWatcher { viewModel.resetErrorPhoneNumber() })
-        }
-    }
-
-    private fun addTextWatcher(textChange: () -> Unit): TextWatcher {
-        return object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                textChange()
-            }
-
-            override fun afterTextChanged(p0: Editable?) {}
         }
     }
 

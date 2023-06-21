@@ -35,9 +35,9 @@ class LoginViewModel @Inject constructor(
     private val handler = CoroutineExceptionHandler { _, throwable ->
         when (throwable) {
             is NullPointerException -> _state.value = Error(ErrorType.NOT_FOUND)
-            is UnknownHostException -> _state.value = Error(ErrorType.CONNECTION)
-            is SocketTimeoutException -> _state.value = Error(ErrorType.CONNECTION)
-            is ConnectException -> _state.value = Error(ErrorType.CONNECTION)
+            is UnknownHostException, is ConnectException, is SocketTimeoutException -> _state.value =
+                Error(ErrorType.CONNECTION)
+
             else -> _state.value = Error(ErrorType.UNKNOWN)
         }
     }

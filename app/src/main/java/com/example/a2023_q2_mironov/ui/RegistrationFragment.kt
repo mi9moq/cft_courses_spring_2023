@@ -76,12 +76,14 @@ class RegistrationFragment : Fragment() {
             }
             binding.tilPassword.error = message
         }
-        viewModel.state.observe(viewLifecycleOwner) { state ->
-            when (state) {
-                RegistrationState.Initial -> Unit
-                is RegistrationState.Error -> launchErrorState(state.type)
-                RegistrationState.Loading -> launchLoadingState()
-            }
+        viewModel.state.observe(viewLifecycleOwner, ::launchState)
+    }
+
+    private fun launchState(state: RegistrationState) {
+        when (state) {
+            RegistrationState.Initial -> Unit
+            is RegistrationState.Error -> launchErrorState(state.type)
+            RegistrationState.Loading -> launchLoadingState()
         }
     }
 

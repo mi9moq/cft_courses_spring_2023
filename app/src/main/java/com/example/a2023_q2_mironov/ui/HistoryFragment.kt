@@ -13,6 +13,7 @@ import com.example.a2023_q2_mironov.databinding.FragmentHistoryBinding
 import com.example.a2023_q2_mironov.domain.entity.Loan
 import com.example.a2023_q2_mironov.presentation.ErrorType
 import com.example.a2023_q2_mironov.presentation.ViewModelFactory
+import com.example.a2023_q2_mironov.presentation.history.HistoryState
 import com.example.a2023_q2_mironov.presentation.history.HistoryState.*
 import com.example.a2023_q2_mironov.presentation.history.HistoryViewModel
 import com.example.a2023_q2_mironov.ui.adapter.HistoryAdapter
@@ -39,9 +40,7 @@ class HistoryFragment : Fragment() {
         ViewModelProvider(this, viewModelFactory)[HistoryViewModel::class.java]
     }
 
-    private val historyAdapter = HistoryAdapter(
-        onClick = { viewModel.openLoanDetail(it.id) }
-    )
+    private val historyAdapter = HistoryAdapter { viewModel.openLoanDetail(it.id) }
 
     override fun onAttach(context: Context) {
         component.inject(this)
@@ -63,13 +62,15 @@ class HistoryFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-        viewModel.state.observe(viewLifecycleOwner) { state ->
-            when (state) {
-                Initial -> Unit
-                Loading -> launchLoadingState()
-                is Content -> launchContentState(state.loans)
-                is Error -> launchErrorState(state.type)
-            }
+        viewModel.state.observe(viewLifecycleOwner, ::launchState)
+    }
+
+    private fun launchState(state: HistoryState) {
+        when (state) {
+            Initial -> Unit
+            Loading -> launchLoadingState()
+            is Content -> launchContentState(state.loans)
+            is Error -> launchErrorState(state.type)
         }
     }
 

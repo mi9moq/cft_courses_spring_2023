@@ -74,13 +74,15 @@ class DetailsFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-        viewModel.state.observe(viewLifecycleOwner) { state ->
-            when (state) {
-                DetailsState.Initial -> Unit
-                DetailsState.Loading -> launchLoadingState()
-                is DetailsState.Content -> launchContentState(state.loan)
-                is DetailsState.Error -> launchErrorState(state.type)
-            }
+        viewModel.state.observe(viewLifecycleOwner, ::launchState)
+    }
+
+    private fun launchState(state: DetailsState) {
+        when (state) {
+            DetailsState.Initial -> Unit
+            DetailsState.Loading -> launchLoadingState()
+            is DetailsState.Content -> launchContentState(state.loan)
+            is DetailsState.Error -> launchErrorState(state.type)
         }
     }
 

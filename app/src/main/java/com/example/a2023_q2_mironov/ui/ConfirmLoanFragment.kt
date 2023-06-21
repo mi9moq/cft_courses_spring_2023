@@ -14,6 +14,7 @@ import com.example.a2023_q2_mironov.databinding.FragmentConfirmLoanBinding
 import com.example.a2023_q2_mironov.domain.entity.LoanRequest
 import com.example.a2023_q2_mironov.presentation.ErrorType
 import com.example.a2023_q2_mironov.presentation.ViewModelFactory
+import com.example.a2023_q2_mironov.presentation.confirm.ConfirmLoanState
 import com.example.a2023_q2_mironov.presentation.confirm.ConfirmLoanState.*
 import com.example.a2023_q2_mironov.presentation.confirm.ConfirmLoanViewModel
 import javax.inject.Inject
@@ -77,13 +78,15 @@ class ConfirmLoanFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-        viewModel.state.observe(viewLifecycleOwner) { state ->
-            when (state) {
-                Initial -> Unit
-                Loading -> launchLoadingState()
-                is Content -> launchContentState(state.loanRequest)
-                is Error -> launchErrorState(state.type)
-            }
+        viewModel.state.observe(viewLifecycleOwner,::launchState)
+    }
+
+    private fun launchState(state: ConfirmLoanState){
+        when (state) {
+            Initial -> Unit
+            Loading -> launchLoadingState()
+            is Content -> launchContentState(state.loanRequest)
+            is Error -> launchErrorState(state.type)
         }
     }
 

@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.a2023_q2_mironov.R
 import com.example.a2023_q2_mironov.databinding.FragmentGuidBinding
 import com.example.a2023_q2_mironov.presentation.ViewModelFactory
+import com.example.a2023_q2_mironov.presentation.guid.GuidState
 import com.example.a2023_q2_mironov.presentation.guid.GuidState.Confirm
 import com.example.a2023_q2_mironov.presentation.guid.GuidState.Fill
 import com.example.a2023_q2_mironov.presentation.guid.GuidState.Finish
@@ -68,13 +69,15 @@ class GuidFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-        viewModel.state.observe(viewLifecycleOwner) { state ->
-            when (state) {
-                Start -> launchStartState()
-                Fill -> launchFillState()
-                Confirm -> launchConfirmState()
-                Finish -> launchFinishConfirm()
-            }
+        viewModel.state.observe(viewLifecycleOwner, ::launchState)
+    }
+
+    private fun launchState(state: GuidState) {
+        when (state) {
+            Start -> launchStartState()
+            Fill -> launchFillState()
+            Confirm -> launchConfirmState()
+            Finish -> launchFinishConfirm()
         }
     }
 

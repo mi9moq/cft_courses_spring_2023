@@ -33,7 +33,7 @@ class LoanRemoteDataSourceImpl @Inject constructor(
 
     override suspend fun createLoan(token: String, loan: LoanRequest) {
         withContext(ioDispatcher) {
-            api.createLoan(token, loan.let { requestConverter.convert(it) })
+            api.createLoan(token, loan.let(requestConverter::convert))
         }
     }
 
@@ -42,12 +42,12 @@ class LoanRemoteDataSourceImpl @Inject constructor(
     }
 
     override suspend fun getLoanById(token: String, id: Long): Loan = withContext(ioDispatcher) {
-        api.getLoanById(token, id).let { loanConverter.revert(it) }
+        api.getLoanById(token, id).let(loanConverter::revert)
     }
 
 
     override suspend fun getLoanConditions(token: String): LoanConditions =
         withContext(ioDispatcher) {
-            api.getLoanConditions(token).let { conditionsConverter.revert(it) }
+            api.getLoanConditions(token).let(conditionsConverter::revert)
         }
 }

@@ -13,6 +13,7 @@ import com.example.a2023_q2_mironov.databinding.FragmentCreateLoanBinding
 import com.example.a2023_q2_mironov.domain.entity.LoanConditions
 import com.example.a2023_q2_mironov.presentation.ErrorType
 import com.example.a2023_q2_mironov.presentation.ViewModelFactory
+import com.example.a2023_q2_mironov.presentation.create.CreateLoanState
 import com.example.a2023_q2_mironov.presentation.create.CreateLoanState.Content
 import com.example.a2023_q2_mironov.presentation.create.CreateLoanState.Error
 import com.example.a2023_q2_mironov.presentation.create.CreateLoanState.Initial
@@ -113,13 +114,15 @@ class CreateLoanFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-        viewModel.state.observe(viewLifecycleOwner) { state ->
-            when (state) {
-                Initial -> Unit
-                Loading -> launchLoadingState()
-                is Content -> launchContentState(state.condition)
-                is Error -> launchErrorState(state.type)
-            }
+        viewModel.state.observe(viewLifecycleOwner, ::launchState)
+    }
+
+    private fun launchState(state: CreateLoanState) {
+        when (state) {
+            Initial -> Unit
+            Loading -> launchLoadingState()
+            is Content -> launchContentState(state.condition)
+            is Error -> launchErrorState(state.type)
         }
     }
 

@@ -14,4 +14,5 @@
     <color name="dark">#FF191919</color>
     <color name="dark_on_primary">#FFFFFFFF</color>
     <color name="dark_on_secondary">#FF9A9B9D</color>
+    <color name="red">#F44336</color>
 </resources>

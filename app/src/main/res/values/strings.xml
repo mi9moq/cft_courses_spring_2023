@@ -37,4 +37,6 @@
     <string name="approved">APPROVED</string>
     <string name="registered">REGISTERED</string>
     <string name="rejected">REJECTED</string>
+    <string name="borrower">borrower</string>
+    <string name="name_and_lastname">%s\n%s</string>
 </resources>

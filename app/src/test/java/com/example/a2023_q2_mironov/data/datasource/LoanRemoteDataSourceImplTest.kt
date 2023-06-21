@@ -15,6 +15,7 @@ import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.junit.jupiter.MockitoExtension
 import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.mock
+import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -34,6 +35,8 @@ class LoanRemoteDataSourceImplTest {
     private val loanId = 111L
     private val conditionsDto = LoanData.loanConditionsDto
     private val conditions = LoanData.loanConditionsEntity
+    private val request = LoanData.loanRequestEntity
+    private val requestDto = LoanData.loanRequestDto
 
     @Test
     fun `getAll EXPECT loans list`() = runTest {
@@ -90,5 +93,22 @@ class LoanRemoteDataSourceImplTest {
         val actual = dataSource.getLoanConditions(token)
 
         assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `create EXPECT create loan`() = runTest {
+        val testDispatcher = UnconfinedTestDispatcher(testScheduler)
+        val dataSource = LoanRemoteDataSourceImpl(
+            api,
+            testDispatcher,
+            loanConverter,
+            loanConditionsConverter,
+            loanRequestConverter
+        )
+        whenever(loanRequestConverter.convert(request)) doReturn requestDto
+
+        dataSource.createLoan(token, request)
+
+        verify(api).createLoan(token, requestDto)
     }
 }

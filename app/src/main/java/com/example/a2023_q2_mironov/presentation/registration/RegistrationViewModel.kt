@@ -41,15 +41,14 @@ class RegistrationViewModel @Inject constructor(
     private val handler = CoroutineExceptionHandler { _, throwable ->
         when (throwable) {
             is HttpException -> {
-                if(throwable.code() == 400){
+                if (throwable.code() == 400) {
                     _state.value = RegistrationState.Error(ErrorType.REGISTRATION)
                 }
             }
-            is UnknownHostException -> _state.value = RegistrationState.Error(ErrorType.CONNECTION)
-            is SocketTimeoutException -> _state.value =
+
+            is UnknownHostException, is SocketTimeoutException, is ConnectException -> _state.value =
                 RegistrationState.Error(ErrorType.CONNECTION)
 
-            is ConnectException -> _state.value = RegistrationState.Error(ErrorType.CONNECTION)
             else -> _state.value = RegistrationState.Error(ErrorType.UNKNOWN)
         }
     }

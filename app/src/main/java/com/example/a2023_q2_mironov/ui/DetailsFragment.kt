@@ -15,6 +15,7 @@ import com.example.a2023_q2_mironov.presentation.ErrorType
 import com.example.a2023_q2_mironov.presentation.details.DetailsViewModel
 import com.example.a2023_q2_mironov.presentation.ViewModelFactory
 import com.example.a2023_q2_mironov.presentation.details.DetailsState
+import com.example.a2023_q2_mironov.util.formatDate
 import com.example.a2023_q2_mironov.util.formatLoanStatus
 import javax.inject.Inject
 
@@ -86,7 +87,7 @@ class DetailsFragment : Fragment() {
         with(binding) {
             progressBar.visibility = View.GONE
             container.visibility = View.VISIBLE
-            date.text = loan.date
+            date.text = formatDate(loan.date)
             amount.text = loan.amount.toString()
             name.text = loan.firstName
             status.text = formatLoanStatus(requireContext(), loan.status)

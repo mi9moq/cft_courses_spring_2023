@@ -51,7 +51,7 @@ class LoanRepositoryImplTest {
         whenever(dataSource.getLoanById(token, loanId)) doReturn loan
 
         val expected = loan
-        val actual = dataSource.getLoanById(token, loanId)
+        val actual = repository.getLoanById(token, loanId)
 
         assertEquals(expected, actual)
     }

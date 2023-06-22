@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.a2023_q2_mironov.R
 import com.example.a2023_q2_mironov.databinding.FragmentLoginBinding
 import com.example.a2023_q2_mironov.presentation.ErrorType
+import com.example.a2023_q2_mironov.presentation.ErrorType.*
 import com.example.a2023_q2_mironov.presentation.ViewModelFactory
 import com.example.a2023_q2_mironov.presentation.login.Error
 import com.example.a2023_q2_mironov.presentation.login.Initial
@@ -94,23 +95,23 @@ class LoginFragment : Fragment() {
         binding.progressBar.visibility = View.GONE
         binding.content.visibility = View.VISIBLE
         when (type) {
-            ErrorType.UNAUTHORIZED -> Unit
-            ErrorType.NOT_FOUND -> {
+            UNAUTHORIZED -> Unit
+            NOT_FOUND -> {
                 val message = getString(R.string.wrong_log_or_pas)
                 showToast(message)
             }
 
-            ErrorType.UNKNOWN -> {
+            UNKNOWN -> {
                 val message = getString(R.string.unknown_error)
                 showToast(message)
             }
 
-            ErrorType.CONNECTION -> {
+            CONNECTION -> {
                 val message = getString(R.string.connection_error)
                 showToast(message)
             }
 
-            ErrorType.REGISTRATION -> Unit
+            REGISTRATION -> Unit
         }
     }
 

@@ -12,6 +12,7 @@ import com.example.a2023_q2_mironov.R
 import com.example.a2023_q2_mironov.databinding.FragmentDetailsBinding
 import com.example.a2023_q2_mironov.domain.entity.Loan
 import com.example.a2023_q2_mironov.presentation.ErrorType
+import com.example.a2023_q2_mironov.presentation.ErrorType.*
 import com.example.a2023_q2_mironov.presentation.details.DetailsViewModel
 import com.example.a2023_q2_mironov.presentation.ViewModelFactory
 import com.example.a2023_q2_mironov.presentation.details.DetailsState
@@ -111,27 +112,27 @@ class DetailsFragment : Fragment() {
         binding.progressBar.visibility = View.GONE
         binding.container.visibility = View.GONE
         when (type) {
-            ErrorType.UNAUTHORIZED -> {
+            UNAUTHORIZED -> {
                 val message = getString(R.string.authorisation_error)
                 showToast(message)
             }
 
-            ErrorType.NOT_FOUND -> {
+            NOT_FOUND -> {
                 val message = getString(R.string.not_found_error)
                 showToast(message)
             }
 
-            ErrorType.UNKNOWN -> {
+            UNKNOWN -> {
                 val message = getString(R.string.unknown_error)
                 showToast(message)
             }
 
-            ErrorType.CONNECTION -> {
+            CONNECTION -> {
                 val message = getString(R.string.connection_error)
                 showToast(message)
             }
 
-            ErrorType.REGISTRATION -> Unit
+            REGISTRATION -> Unit
         }
     }
 

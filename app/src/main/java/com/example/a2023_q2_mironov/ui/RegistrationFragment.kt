@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.a2023_q2_mironov.R
 import com.example.a2023_q2_mironov.databinding.FragmentRegistrationBinding
 import com.example.a2023_q2_mironov.presentation.ErrorType
+import com.example.a2023_q2_mironov.presentation.ErrorType.*
 import com.example.a2023_q2_mironov.presentation.ViewModelFactory
 import com.example.a2023_q2_mironov.presentation.registration.RegistrationState
 import com.example.a2023_q2_mironov.presentation.registration.RegistrationViewModel
@@ -91,20 +92,20 @@ class RegistrationFragment : Fragment() {
         binding.progressBar.visibility = View.GONE
         binding.content.visibility = View.VISIBLE
         when (type) {
-            ErrorType.UNAUTHORIZED -> Unit
-            ErrorType.NOT_FOUND -> Unit
+            UNAUTHORIZED -> Unit
+            NOT_FOUND -> Unit
 
-            ErrorType.UNKNOWN -> {
+            UNKNOWN -> {
                 val message = getString(R.string.unknown_error)
                 showToast(message)
             }
 
-            ErrorType.CONNECTION -> {
+            CONNECTION -> {
                 val message = getString(R.string.connection_error)
                 showToast(message)
             }
 
-            ErrorType.REGISTRATION -> {
+            REGISTRATION -> {
                 val message = getString(R.string.registration_error)
                 showToast(message)
             }

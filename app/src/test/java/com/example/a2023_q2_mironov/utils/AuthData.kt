@@ -7,13 +7,13 @@ import com.example.a2023_q2_mironov.domain.entity.User
 
 object AuthData {
 
-    val authEntity = Auth(name = "User Name", password = "Password")
+    val authEntity = Auth(name = "UserName", password = "Password")
 
-    val authDto = AuthDto(name = "User Name", password = "Password")
+    val authDto = AuthDto(name = "UserName", password = "Password")
 
-    val userEntity = User(name = "User Name", role = "USER")
+    val userEntity = User(name = "UserName", role = "USER")
 
-    val userDto = UserDto(name = "User Name", role = "USER")
+    val userDto = UserDto(name = "UserName", role = "USER")
 
     const val token = "eqweqwasdaweq"
 }

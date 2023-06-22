@@ -30,9 +30,9 @@
     <string name="guid_fill">Familiarize yourself with the terms and fill in the necessary information</string>
     <string name="guid_start">Click on \'Apply for a loan\' on the main screen</string>
     <string name="guid_confirm">Confirm your information and complete the loan application</string>
-    <string name="guid_finish">The loan has been successfully processed</string>
+    <string name="guid_finish">The loan application has been successfully submitted</string>
     <string name="confirm">confirm</string>
-    <string name="loan_approved">The loan has been successfully approved</string>
+    <string name="loan_submitted">The loan application has been successfully submitted</string>
     <string name="main_screen">main screen</string>
     <string name="approved">APPROVED</string>
     <string name="registered">REGISTERED</string>

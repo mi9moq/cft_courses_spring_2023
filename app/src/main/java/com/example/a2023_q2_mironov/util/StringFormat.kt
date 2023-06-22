@@ -14,10 +14,10 @@ fun formatLoanStatus(context: Context, status: LoanStatus) =
     }
 
 fun formatBorrower(context: Context, name: String, surname: String) =
-    String.format(context.getString(R.string.name_and_lastname),name,surname)
+    String.format(context.getString(R.string.name_and_lastname), name, surname)
 
-fun colorStatus(context: Context, status: LoanStatus)=
-    when(status){
+fun colorStatus(context: Context, status: LoanStatus) =
+    when (status) {
         LoanStatus.APPROVED -> context.getColor(R.color.green)
         LoanStatus.REGISTERED -> context.getColor(R.color.purple_700)
         LoanStatus.REJECTED -> context.getColor(R.color.red)
@@ -25,3 +25,11 @@ fun colorStatus(context: Context, status: LoanStatus)=
 
 fun formatDate(date: LocalDateTime): String =
     date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"))
+
+fun formatAmount(context: Context, amount: Long) =
+    String.format(context.getString(R.string.amount_format), amount)
+
+fun formatPercent(percent: Double) = "$percent %"
+
+fun formatPeriod(context: Context, period: Int) =
+    String.format(context.getString(R.string.period_format), period)

@@ -18,6 +18,8 @@ import com.example.a2023_q2_mironov.presentation.ViewModelFactory
 import com.example.a2023_q2_mironov.presentation.confirm.ConfirmLoanState
 import com.example.a2023_q2_mironov.presentation.confirm.ConfirmLoanState.*
 import com.example.a2023_q2_mironov.presentation.confirm.ConfirmLoanViewModel
+import com.example.a2023_q2_mironov.util.formatAmount
+import com.example.a2023_q2_mironov.util.formatPercent
 import javax.inject.Inject
 
 class ConfirmLoanFragment : Fragment() {
@@ -79,10 +81,10 @@ class ConfirmLoanFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-        viewModel.state.observe(viewLifecycleOwner,::launchState)
+        viewModel.state.observe(viewLifecycleOwner, ::launchState)
     }
 
-    private fun launchState(state: ConfirmLoanState){
+    private fun launchState(state: ConfirmLoanState) {
         when (state) {
             Initial -> Unit
             Loading -> launchLoadingState()
@@ -93,10 +95,10 @@ class ConfirmLoanFragment : Fragment() {
 
     private fun launchContentState(request: LoanRequest) {
         with(binding) {
-            amountValue.text = request.amount.toString()
+            amountValue.text = formatAmount(requireContext(), request.amount.toLong())
             nameValue.text = request.firstName
             surnameValue.text = request.lastName
-            percentValue.text = request.percent.toString()
+            percentValue.text = formatPercent(request.percent)
             phoneNumberValue.text = request.phoneNumber
         }
     }

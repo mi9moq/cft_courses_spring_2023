@@ -39,4 +39,6 @@
     <string name="rejected">REJECTED</string>
     <string name="borrower">borrower</string>
     <string name="name_and_lastname">%s\n%s</string>
+    <string name="amount_format">%s rub</string>
+    <string name="period_format">%s months</string>
 </resources>

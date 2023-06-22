@@ -17,8 +17,11 @@ import com.example.a2023_q2_mironov.presentation.details.DetailsViewModel
 import com.example.a2023_q2_mironov.presentation.ViewModelFactory
 import com.example.a2023_q2_mironov.presentation.details.DetailsState
 import com.example.a2023_q2_mironov.util.colorStatus
+import com.example.a2023_q2_mironov.util.formatAmount
 import com.example.a2023_q2_mironov.util.formatDate
 import com.example.a2023_q2_mironov.util.formatLoanStatus
+import com.example.a2023_q2_mironov.util.formatPercent
+import com.example.a2023_q2_mironov.util.formatPeriod
 import javax.inject.Inject
 
 class DetailsFragment : Fragment() {
@@ -92,14 +95,14 @@ class DetailsFragment : Fragment() {
             progressBar.visibility = View.GONE
             container.visibility = View.VISIBLE
             date.text = formatDate(loan.date)
-            amount.text = loan.amount.toString()
+            amount.text = formatAmount(requireContext(), loan.amount)
             name.text = loan.firstName
             status.text = formatLoanStatus(requireContext(), loan.status)
             status.setTextColor(colorStatus(requireContext(), loan.status))
             surname.text = loan.lastName
             phoneNumber.text = loan.phoneNumber
-            percent.text = loan.percent.toString()
-            period.text = loan.period.toString()
+            percent.text = formatPercent(loan.percent)
+            period.text = formatPeriod(requireContext(),loan.period)
         }
     }
 

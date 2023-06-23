@@ -1,6 +1,7 @@
-package com.example.a2023_q2_mironov.ui
+package com.example.a2023_q2_mironov.ui.fragment
 
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,46 +10,44 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.a2023_q2_mironov.R
-import com.example.a2023_q2_mironov.databinding.FragmentDetailsBinding
-import com.example.a2023_q2_mironov.domain.entity.Loan
+import com.example.a2023_q2_mironov.databinding.FragmentConfirmLoanBinding
+import com.example.a2023_q2_mironov.domain.entity.LoanRequest
 import com.example.a2023_q2_mironov.presentation.ErrorType
 import com.example.a2023_q2_mironov.presentation.ErrorType.*
-import com.example.a2023_q2_mironov.presentation.details.DetailsViewModel
 import com.example.a2023_q2_mironov.presentation.ViewModelFactory
-import com.example.a2023_q2_mironov.presentation.details.DetailsState
-import com.example.a2023_q2_mironov.util.colorStatus
+import com.example.a2023_q2_mironov.presentation.confirm.ConfirmLoanState
+import com.example.a2023_q2_mironov.presentation.confirm.ConfirmLoanState.*
+import com.example.a2023_q2_mironov.presentation.confirm.ConfirmLoanViewModel
+import com.example.a2023_q2_mironov.ui.activity.MainActivity
 import com.example.a2023_q2_mironov.util.formatAmount
-import com.example.a2023_q2_mironov.util.formatDate
-import com.example.a2023_q2_mironov.util.formatLoanStatus
 import com.example.a2023_q2_mironov.util.formatPercent
-import com.example.a2023_q2_mironov.util.formatPeriod
 import javax.inject.Inject
 
-class DetailsFragment : Fragment() {
+class ConfirmLoanFragment : Fragment() {
 
     companion object {
-        fun newInstance(id: Long) = DetailsFragment().apply {
+        fun newInstance(loanRequest: LoanRequest) = ConfirmLoanFragment().apply {
             arguments = Bundle().apply {
-                putLong(LOAN_ID, id)
+                putParcelable(LOAN, loanRequest)
             }
         }
 
-        private const val LOAN_ID = "loan id"
+        private const val LOAN = "loan request"
     }
 
     private val component by lazy {
         (requireActivity() as MainActivity).component
     }
 
-    private var _binding: FragmentDetailsBinding? = null
-    private val binding: FragmentDetailsBinding
+    private var _binding: FragmentConfirmLoanBinding? = null
+    private val binding: FragmentConfirmLoanBinding
         get() = _binding!!
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
     private val viewModel by lazy {
-        ViewModelProvider(this, viewModelFactory)[DetailsViewModel::class.java]
+        ViewModelProvider(this, viewModelFactory)[ConfirmLoanViewModel::class.java]
     }
 
     override fun onAttach(context: Context) {
@@ -56,53 +55,52 @@ class DetailsFragment : Fragment() {
         super.onAttach(context)
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        parseArguments()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentDetailsBinding.inflate(inflater, container, false)
+        _binding = FragmentConfirmLoanBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        parseArguments()
+        setupClickListeners()
         observeViewModel()
     }
 
-    private fun parseArguments() {
-        val args = requireArguments()
-        val id = args.getLong(LOAN_ID)
-        viewModel.loadDetails(id)
+    private fun setupClickListeners() {
+        binding.confirm.setOnClickListener {
+            viewModel.createLoan()
+        }
     }
 
     private fun observeViewModel() {
         viewModel.state.observe(viewLifecycleOwner, ::launchState)
     }
 
-    private fun launchState(state: DetailsState) {
+    private fun launchState(state: ConfirmLoanState) {
         when (state) {
-            DetailsState.Initial -> Unit
-            DetailsState.Loading -> launchLoadingState()
-            is DetailsState.Content -> launchContentState(state.loan)
-            is DetailsState.Error -> launchErrorState(state.type)
+            Initial -> Unit
+            Loading -> launchLoadingState()
+            is Content -> launchContentState(state.loanRequest)
+            is Error -> launchErrorState(state.type)
         }
     }
 
-    private fun launchContentState(loan: Loan) {
+    private fun launchContentState(request: LoanRequest) {
         with(binding) {
-            progressBar.visibility = View.GONE
-            container.visibility = View.VISIBLE
-            date.text = formatDate(loan.date)
-            amount.text = formatAmount(requireContext(), loan.amount)
-            name.text = loan.firstName
-            status.text = formatLoanStatus(requireContext(), loan.status)
-            status.setTextColor(colorStatus(requireContext(), loan.status))
-            surname.text = loan.lastName
-            phoneNumber.text = loan.phoneNumber
-            percent.text = formatPercent(loan.percent)
-            period.text = formatPeriod(requireContext(),loan.period)
+            amountValue.text = formatAmount(requireContext(), request.amount.toLong())
+            nameValue.text = request.firstName
+            surnameValue.text = request.lastName
+            percentValue.text = formatPercent(request.percent)
+            phoneNumberValue.text = request.phoneNumber
         }
     }
 
@@ -141,6 +139,19 @@ class DetailsFragment : Fragment() {
 
     private fun showToast(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
+    }
+
+    @Suppress("DEPRECATION")
+    private fun parseArguments() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            arguments?.getParcelable(LOAN, LoanRequest::class.java)?.let { loanRequest ->
+                viewModel.putLoanRequest(loanRequest)
+            }
+        } else {
+            arguments?.getParcelable<LoanRequest>(LOAN)?.let { loanRequest ->
+                viewModel.putLoanRequest(loanRequest)
+            }
+        }
     }
 
     override fun onDestroyView() {

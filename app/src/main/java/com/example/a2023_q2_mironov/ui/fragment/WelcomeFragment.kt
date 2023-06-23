@@ -1,4 +1,4 @@
-package com.example.a2023_q2_mironov.ui
+package com.example.a2023_q2_mironov.ui.fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.a2023_q2_mironov.databinding.FragmentWelcomeBinding
 import com.example.a2023_q2_mironov.presentation.ViewModelFactory
 import com.example.a2023_q2_mironov.presentation.welcom.WelcomeViewModel
+import com.example.a2023_q2_mironov.ui.activity.MainActivity
 import javax.inject.Inject
 
 class WelcomeFragment : Fragment() {

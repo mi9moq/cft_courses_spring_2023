@@ -1,4 +1,4 @@
-package com.example.a2023_q2_mironov.ui
+package com.example.a2023_q2_mironov.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

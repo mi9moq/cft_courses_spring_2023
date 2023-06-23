@@ -1,4 +1,4 @@
-package com.example.a2023_q2_mironov.ui
+package com.example.a2023_q2_mironov.ui.fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -17,6 +17,7 @@ import com.example.a2023_q2_mironov.presentation.ViewModelFactory
 import com.example.a2023_q2_mironov.presentation.history.HistoryState
 import com.example.a2023_q2_mironov.presentation.history.HistoryState.*
 import com.example.a2023_q2_mironov.presentation.history.HistoryViewModel
+import com.example.a2023_q2_mironov.ui.activity.MainActivity
 import com.example.a2023_q2_mironov.ui.adapter.HistoryAdapter
 import javax.inject.Inject
 

@@ -1,4 +1,4 @@
-package com.example.a2023_q2_mironov.ui
+package com.example.a2023_q2_mironov.ui.fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -16,6 +16,7 @@ import com.example.a2023_q2_mironov.presentation.guid.GuidState.Fill
 import com.example.a2023_q2_mironov.presentation.guid.GuidState.Finish
 import com.example.a2023_q2_mironov.presentation.guid.GuidState.Start
 import com.example.a2023_q2_mironov.presentation.guid.GuidViewModel
+import com.example.a2023_q2_mironov.ui.activity.MainActivity
 import javax.inject.Inject
 
 class GuidFragment : Fragment() {

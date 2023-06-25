@@ -15,6 +15,10 @@ import javax.inject.Inject
 
 class WelcomeFragment : Fragment() {
 
+    companion object {
+        fun newInstance() = WelcomeFragment()
+    }
+
     private val component by lazy {
         (requireActivity() as MainActivity).component
     }

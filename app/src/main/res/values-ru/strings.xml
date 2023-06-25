@@ -11,6 +11,7 @@
     <string name="unknown_error">Неизвестная ошибка</string>
     <string name="not_found_error">Страница не найдена</string>
     <string name="authorisation_error">Ошибка авторизации</string>
+    <string name="authorisation_error_message">Вы не авторизованы, пожалуйста, войдите снова</string>
     <string name="connection_error">Ошибка соединения, пожалуйста проверьте соединение с интернетом</string>
     <string name="registration_error">Пользователь с таким именем уже существует</string>
     <string name="how_to_use">Как оформить займ?</string>
@@ -32,7 +33,7 @@
     <string name="guid_start">Нажмите \'Оформить займ\' на главном экране</string>
     <string name="guid_confirm">Подтвердите данные и завершите оформление займа</string>
     <string name="guid_finish">Заявка на займ успешно оформлена</string>
-    <string name="confirm">confirm</string>
+    <string name="confirm">подтвердить</string>
     <string name="loan_submitted">Заявка на займ успешно оформлена</string>
     <string name="main_screen">на главный экран</string>
     <string name="approved">ОДОБРЕНА</string>

@@ -9,7 +9,8 @@
     <string name="wrong_log_or_pas">wrong login or password</string>
     <string name="unknown_error">Unknown error</string>
     <string name="not_found_error">Page not found</string>
-    <string name="authorisation_error">You are not authorized</string>
+    <string name="authorisation_error">Authorisation error</string>
+    <string name="authorisation_error_message">You are not authorized, please login again</string>
     <string name="connection_error">Connection error, please check your internet connection</string>
     <string name="registration_error">User with the same name already exists</string>
     <string name="how_to_use">How to use?</string>

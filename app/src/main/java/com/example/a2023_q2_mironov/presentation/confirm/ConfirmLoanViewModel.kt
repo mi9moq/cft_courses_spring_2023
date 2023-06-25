@@ -42,6 +42,8 @@ class ConfirmLoanViewModel @Inject constructor(
                     _state.value = Error(ErrorType.UNAUTHORIZED)
                 else if (throwable.code() == 404)
                     _state.value = Error(ErrorType.NOT_FOUND)
+                else
+                    _state.value = Error(ErrorType.UNKNOWN)
             }
 
             else -> _state.value = Error(ErrorType.UNKNOWN)

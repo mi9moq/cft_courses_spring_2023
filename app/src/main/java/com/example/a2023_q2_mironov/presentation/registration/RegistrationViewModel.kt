@@ -6,11 +6,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.a2023_q2_mironov.domain.entity.AccessUserToken
 import com.example.a2023_q2_mironov.domain.entity.Auth
+import com.example.a2023_q2_mironov.domain.entity.AuthErrorType.CONNECTION
+import com.example.a2023_q2_mironov.domain.entity.AuthErrorType.UNKNOWN
+import com.example.a2023_q2_mironov.domain.entity.AuthErrorType.USER_EXIST
 import com.example.a2023_q2_mironov.domain.usecase.LoginUseCase
 import com.example.a2023_q2_mironov.domain.usecase.RegistrationUseCase
 import com.example.a2023_q2_mironov.domain.usecase.SetUserTokenUseCase
 import com.example.a2023_q2_mironov.navigation.router.RegistrationRouter
-import com.example.a2023_q2_mironov.presentation.ErrorType
+import com.example.a2023_q2_mironov.presentation.registration.RegistrationState.Error
 import com.example.a2023_q2_mironov.presentation.registration.RegistrationState.Initial
 import com.example.a2023_q2_mironov.presentation.registration.RegistrationState.Loading
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -41,15 +44,16 @@ class RegistrationViewModel @Inject constructor(
     private val handler = CoroutineExceptionHandler { _, throwable ->
         when (throwable) {
             is HttpException -> {
-                if (throwable.code() == 400) {
-                    _state.value = RegistrationState.Error(ErrorType.REGISTRATION)
-                }
+                if (throwable.code() == 400)
+                    _state.value = Error(USER_EXIST)
+                 else
+                     _state.value =  Error(UNKNOWN)
             }
 
             is UnknownHostException, is SocketTimeoutException, is ConnectException -> _state.value =
-                RegistrationState.Error(ErrorType.CONNECTION)
+                Error(CONNECTION)
 
-            else -> _state.value = RegistrationState.Error(ErrorType.UNKNOWN)
+            else -> _state.value = Error(UNKNOWN)
         }
     }
 

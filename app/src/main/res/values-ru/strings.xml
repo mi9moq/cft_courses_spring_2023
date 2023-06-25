@@ -13,7 +13,7 @@
     <string name="authorisation_error">Ошибка авторизации</string>
     <string name="authorisation_error_message">Вы не авторизованы, пожалуйста, войдите снова</string>
     <string name="connection_error">Ошибка соединения, пожалуйста проверьте соединение с интернетом</string>
-    <string name="registration_error">Пользователь с таким именем уже существует</string>
+    <string name="user_exists">Пользователь с таким именем уже существует</string>
     <string name="how_to_use">Как оформить займ?</string>
     <string name="get_a_loan">Оформить займ</string>
     <string name="loan_history">История займов</string>

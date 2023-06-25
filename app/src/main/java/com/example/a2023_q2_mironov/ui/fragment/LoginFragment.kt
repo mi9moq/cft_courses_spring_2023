@@ -10,12 +10,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.a2023_q2_mironov.R
 import com.example.a2023_q2_mironov.databinding.FragmentLoginBinding
-import com.example.a2023_q2_mironov.presentation.ErrorType
-import com.example.a2023_q2_mironov.presentation.ErrorType.*
+import com.example.a2023_q2_mironov.domain.entity.AuthErrorType
+import com.example.a2023_q2_mironov.domain.entity.AuthErrorType.*
 import com.example.a2023_q2_mironov.presentation.ViewModelFactory
-import com.example.a2023_q2_mironov.presentation.login.Error
-import com.example.a2023_q2_mironov.presentation.login.Initial
-import com.example.a2023_q2_mironov.presentation.login.Loading
 import com.example.a2023_q2_mironov.presentation.login.LoginState
 import com.example.a2023_q2_mironov.presentation.login.LoginViewModel
 import com.example.a2023_q2_mironov.ui.activity.MainActivity
@@ -86,18 +83,18 @@ class LoginFragment : Fragment() {
 
     private fun launchState(state: LoginState) {
         when (state) {
-            Initial -> Unit
-            is Error -> launchErrorState(state.type)
-            Loading -> launchLoadingState()
+            LoginState.Initial -> Unit
+            LoginState.Loading -> launchLoadingState()
+            is LoginState.Error -> launchErrorState(state.type)
         }
     }
 
-    private fun launchErrorState(type: ErrorType) {
+    private fun launchErrorState(type: AuthErrorType) {
         binding.progressBar.visibility = View.GONE
         binding.content.visibility = View.VISIBLE
         when (type) {
-            UNAUTHORIZED -> Unit
-            NOT_FOUND -> binding.tilPassword.error = getString(R.string.wrong_log_or_pas)
+            WRONG_LOGIN_OR_PASSWORD -> binding.tilPassword.error =
+                getString(R.string.wrong_log_or_pas)
 
 
             UNKNOWN -> {
@@ -110,7 +107,7 @@ class LoginFragment : Fragment() {
                 showToast(message)
             }
 
-            REGISTRATION -> Unit
+            USER_EXIST -> Unit
         }
     }
 

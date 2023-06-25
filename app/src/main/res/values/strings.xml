@@ -12,7 +12,7 @@
     <string name="authorisation_error">Authorisation error</string>
     <string name="authorisation_error_message">You are not authorized, please login again</string>
     <string name="connection_error">Connection error, please check your internet connection</string>
-    <string name="registration_error">User with the same name already exists</string>
+    <string name="user_exists">User with the same name already exists</string>
     <string name="how_to_use">How to use?</string>
     <string name="get_a_loan">Take out a loan</string>
     <string name="loan_history">loan history</string>

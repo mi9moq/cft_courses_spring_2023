@@ -6,10 +6,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.a2023_q2_mironov.domain.entity.AccessUserToken
 import com.example.a2023_q2_mironov.domain.entity.Auth
+import com.example.a2023_q2_mironov.domain.entity.AuthErrorType
 import com.example.a2023_q2_mironov.domain.usecase.LoginUseCase
 import com.example.a2023_q2_mironov.domain.usecase.SetUserTokenUseCase
 import com.example.a2023_q2_mironov.navigation.router.LoginRouter
-import com.example.a2023_q2_mironov.presentation.ErrorType
+import com.example.a2023_q2_mironov.presentation.login.LoginState.Error
+import com.example.a2023_q2_mironov.presentation.login.LoginState.Initial
+import com.example.a2023_q2_mironov.presentation.login.LoginState.Loading
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 import java.net.ConnectException
@@ -34,11 +37,11 @@ class LoginViewModel @Inject constructor(
 
     private val handler = CoroutineExceptionHandler { _, throwable ->
         when (throwable) {
-            is NullPointerException -> _state.value = Error(ErrorType.NOT_FOUND)
+            is NullPointerException -> _state.value = Error(AuthErrorType.WRONG_LOGIN_OR_PASSWORD)
             is UnknownHostException, is ConnectException, is SocketTimeoutException -> _state.value =
-                Error(ErrorType.CONNECTION)
+                Error(AuthErrorType.CONNECTION)
 
-            else -> _state.value = Error(ErrorType.UNKNOWN)
+            else -> _state.value = Error(AuthErrorType.UNKNOWN)
         }
     }
 

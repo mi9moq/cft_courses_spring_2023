@@ -1,6 +1,6 @@
 package com.example.a2023_q2_mironov.presentation.registration
 
-import com.example.a2023_q2_mironov.presentation.ErrorType
+import com.example.a2023_q2_mironov.domain.entity.AuthErrorType
 
 sealed interface RegistrationState {
 
@@ -8,5 +8,5 @@ sealed interface RegistrationState {
 
     object Loading : RegistrationState
 
-    data class Error(val type: ErrorType) : RegistrationState
+    data class Error(val type: AuthErrorType) : RegistrationState
 }

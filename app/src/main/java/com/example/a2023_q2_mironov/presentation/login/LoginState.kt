@@ -1,11 +1,12 @@
 package com.example.a2023_q2_mironov.presentation.login
 
-import com.example.a2023_q2_mironov.presentation.ErrorType
+import com.example.a2023_q2_mironov.domain.entity.AuthErrorType
 
-sealed interface LoginState
+sealed interface LoginState {
 
-object Initial : LoginState
+    object Initial : LoginState
 
-object Loading: LoginState
+    object Loading : LoginState
 
-data class Error(val type: ErrorType): LoginState
+    data class Error(val type: AuthErrorType) : LoginState
+}

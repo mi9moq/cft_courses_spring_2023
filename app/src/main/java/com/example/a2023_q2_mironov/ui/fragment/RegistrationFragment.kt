@@ -10,8 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.a2023_q2_mironov.R
 import com.example.a2023_q2_mironov.databinding.FragmentRegistrationBinding
-import com.example.a2023_q2_mironov.presentation.ErrorType
-import com.example.a2023_q2_mironov.presentation.ErrorType.*
+import com.example.a2023_q2_mironov.domain.entity.AuthErrorType
 import com.example.a2023_q2_mironov.presentation.ViewModelFactory
 import com.example.a2023_q2_mironov.presentation.registration.RegistrationState
 import com.example.a2023_q2_mironov.presentation.registration.RegistrationViewModel
@@ -89,24 +88,24 @@ class RegistrationFragment : Fragment() {
         }
     }
 
-    private fun launchErrorState(type: ErrorType) {
+    private fun launchErrorState(type: AuthErrorType) {
         binding.progressBar.visibility = View.GONE
         binding.content.visibility = View.VISIBLE
         when (type) {
-            UNAUTHORIZED -> Unit
-            NOT_FOUND -> Unit
+            AuthErrorType.WRONG_LOGIN_OR_PASSWORD -> Unit
 
-            UNKNOWN -> {
+            AuthErrorType.UNKNOWN -> {
                 val message = getString(R.string.unknown_error)
                 showToast(message)
             }
 
-            CONNECTION -> {
+            AuthErrorType.CONNECTION -> {
                 val message = getString(R.string.connection_error)
                 showToast(message)
             }
 
-            REGISTRATION -> binding.tilLogin.error = getString(R.string.registration_error)
+            AuthErrorType.USER_EXIST -> binding.tilLogin.error =
+                getString(R.string.user_exists)
 
         }
     }

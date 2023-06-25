@@ -11,8 +11,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.a2023_q2_mironov.R
 import com.example.a2023_q2_mironov.databinding.FragmentHistoryBinding
 import com.example.a2023_q2_mironov.domain.entity.Loan
-import com.example.a2023_q2_mironov.presentation.ErrorType
-import com.example.a2023_q2_mironov.presentation.ErrorType.*
+import com.example.a2023_q2_mironov.domain.entity.LoanErrorType
+import com.example.a2023_q2_mironov.domain.entity.LoanErrorType.*
 import com.example.a2023_q2_mironov.presentation.ViewModelFactory
 import com.example.a2023_q2_mironov.presentation.history.HistoryState
 import com.example.a2023_q2_mironov.presentation.history.HistoryState.*
@@ -88,17 +88,12 @@ class HistoryFragment : Fragment() {
         }
     }
 
-    private fun launchErrorState(type: ErrorType) {
+    private fun launchErrorState(type: LoanErrorType) {
         binding.progressBar.visibility = View.GONE
         binding.historyList.visibility = View.GONE
         when (type) {
             UNAUTHORIZED -> {
                 val message = getString(R.string.authorisation_error)
-                showToast(message)
-            }
-
-            NOT_FOUND -> {
-                val message = getString(R.string.not_found_error)
                 showToast(message)
             }
 
@@ -111,8 +106,6 @@ class HistoryFragment : Fragment() {
                 val message = getString(R.string.connection_error)
                 showToast(message)
             }
-
-            REGISTRATION -> Unit
         }
     }
 

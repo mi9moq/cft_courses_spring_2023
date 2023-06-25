@@ -10,8 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.a2023_q2_mironov.R
 import com.example.a2023_q2_mironov.databinding.FragmentCreateLoanBinding
 import com.example.a2023_q2_mironov.domain.entity.LoanConditions
-import com.example.a2023_q2_mironov.presentation.ErrorType
-import com.example.a2023_q2_mironov.presentation.ErrorType.*
+import com.example.a2023_q2_mironov.domain.entity.LoanErrorType
+import com.example.a2023_q2_mironov.domain.entity.LoanErrorType.*
 import com.example.a2023_q2_mironov.presentation.ViewModelFactory
 import com.example.a2023_q2_mironov.presentation.create.CreateLoanState
 import com.example.a2023_q2_mironov.presentation.create.CreateLoanState.Content
@@ -151,14 +151,12 @@ class CreateLoanFragment : Fragment() {
         binding.errorContainer.visibility = View.GONE
     }
 
-    private fun launchErrorState(type: ErrorType) {
+    private fun launchErrorState(type: LoanErrorType) {
         binding.progressBar.visibility = View.GONE
         binding.contentContainer.visibility = View.GONE
         binding.errorContainer.visibility = View.VISIBLE
         when (type) {
             UNAUTHORIZED -> showUnauthorizedDialog(requireContext(), viewModel::resetToken)
-
-            NOT_FOUND -> binding.errorMessage.text = getString(R.string.not_found_error)
 
             UNKNOWN -> binding.errorMessage.text = getString(R.string.unknown_error)
 
@@ -166,8 +164,6 @@ class CreateLoanFragment : Fragment() {
                 binding.errorMessage.text = getString(R.string.connection_error)
                 binding.errorIcon.setImageResource(R.drawable.ic_connection_error)
             }
-
-            REGISTRATION -> Unit
         }
     }
 

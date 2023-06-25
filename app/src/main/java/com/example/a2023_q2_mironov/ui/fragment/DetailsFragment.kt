@@ -10,12 +10,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.a2023_q2_mironov.R
 import com.example.a2023_q2_mironov.databinding.FragmentDetailsBinding
 import com.example.a2023_q2_mironov.domain.entity.Loan
-import com.example.a2023_q2_mironov.presentation.ErrorType
-import com.example.a2023_q2_mironov.presentation.ErrorType.CONNECTION
-import com.example.a2023_q2_mironov.presentation.ErrorType.NOT_FOUND
-import com.example.a2023_q2_mironov.presentation.ErrorType.REGISTRATION
-import com.example.a2023_q2_mironov.presentation.ErrorType.UNAUTHORIZED
-import com.example.a2023_q2_mironov.presentation.ErrorType.UNKNOWN
+import com.example.a2023_q2_mironov.domain.entity.LoanErrorType
+import com.example.a2023_q2_mironov.domain.entity.LoanErrorType.CONNECTION
+import com.example.a2023_q2_mironov.domain.entity.LoanErrorType.UNAUTHORIZED
+import com.example.a2023_q2_mironov.domain.entity.LoanErrorType.UNKNOWN
 import com.example.a2023_q2_mironov.presentation.ViewModelFactory
 import com.example.a2023_q2_mironov.presentation.details.DetailsState
 import com.example.a2023_q2_mironov.presentation.details.DetailsViewModel
@@ -133,7 +131,7 @@ class DetailsFragment : Fragment() {
         binding.contentContainer.visibility = View.GONE
     }
 
-    private fun launchErrorState(type: ErrorType) {
+    private fun launchErrorState(type: LoanErrorType) {
         with(binding) {
             progressBar.visibility = View.GONE
             contentContainer.visibility = View.GONE
@@ -141,16 +139,12 @@ class DetailsFragment : Fragment() {
             when (type) {
                 UNAUTHORIZED -> showUnauthorizedDialog(requireContext(), viewModel::relogin)
 
-                NOT_FOUND -> errorMessage.text = getString(R.string.not_found_error)
-
                 UNKNOWN -> errorMessage.text = getString(R.string.unknown_error)
 
                 CONNECTION -> {
                     errorMessage.text = getString(R.string.connection_error)
                     errorIcon.setImageResource(R.drawable.ic_connection_error)
                 }
-
-                REGISTRATION -> Unit
             }
         }
     }

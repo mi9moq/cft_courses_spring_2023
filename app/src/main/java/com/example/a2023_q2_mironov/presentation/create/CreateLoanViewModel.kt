@@ -10,7 +10,7 @@ import com.example.a2023_q2_mironov.domain.usecase.GetLoanConditionsUseCase
 import com.example.a2023_q2_mironov.domain.usecase.GetUserTokenUseCase
 import com.example.a2023_q2_mironov.domain.usecase.ResetUserTokenUseCase
 import com.example.a2023_q2_mironov.navigation.router.CreateRouter
-import com.example.a2023_q2_mironov.presentation.ErrorType
+import com.example.a2023_q2_mironov.domain.entity.LoanErrorType
 import com.example.a2023_q2_mironov.presentation.create.CreateLoanState.Content
 import com.example.a2023_q2_mironov.presentation.create.CreateLoanState.Error
 import com.example.a2023_q2_mironov.presentation.create.CreateLoanState.Initial
@@ -48,18 +48,16 @@ class CreateLoanViewModel @Inject constructor(
     private val handler = CoroutineExceptionHandler { _, throwable ->
         when (throwable) {
             is UnknownHostException, is SocketTimeoutException, is ConnectException -> _state.value =
-                Error(ErrorType.CONNECTION)
+                Error(LoanErrorType.CONNECTION)
 
             is HttpException -> {
                 if (throwable.code() == 403)
-                    _state.value = Error(ErrorType.UNAUTHORIZED)
-                else if (throwable.code() == 404)
-                    _state.value = Error(ErrorType.NOT_FOUND)
+                    _state.value = Error(LoanErrorType.UNAUTHORIZED)
                 else
-                    _state.value = Error(ErrorType.UNKNOWN)
+                    _state.value = Error(LoanErrorType.UNKNOWN)
             }
 
-            else -> _state.value = Error(ErrorType.UNKNOWN)
+            else -> _state.value = Error(LoanErrorType.UNKNOWN)
         }
     }
 

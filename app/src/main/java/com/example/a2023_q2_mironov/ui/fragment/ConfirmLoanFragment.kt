@@ -11,8 +11,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.a2023_q2_mironov.R
 import com.example.a2023_q2_mironov.databinding.FragmentConfirmLoanBinding
 import com.example.a2023_q2_mironov.domain.entity.LoanRequest
-import com.example.a2023_q2_mironov.presentation.ErrorType
-import com.example.a2023_q2_mironov.presentation.ErrorType.*
+import com.example.a2023_q2_mironov.domain.entity.LoanErrorType
+import com.example.a2023_q2_mironov.domain.entity.LoanErrorType.*
 import com.example.a2023_q2_mironov.presentation.ViewModelFactory
 import com.example.a2023_q2_mironov.presentation.confirm.ConfirmLoanState
 import com.example.a2023_q2_mironov.presentation.confirm.ConfirmLoanState.*
@@ -116,7 +116,7 @@ class ConfirmLoanFragment : Fragment() {
         binding.errorContainer.visibility = View.GONE
     }
 
-    private fun launchErrorState(type: ErrorType) {
+    private fun launchErrorState(type: LoanErrorType) {
         with(binding) {
             progressBar.visibility = View.GONE
             contentContainer.visibility = View.GONE
@@ -124,16 +124,12 @@ class ConfirmLoanFragment : Fragment() {
             when (type) {
                 UNAUTHORIZED -> showUnauthorizedDialog(requireContext(), viewModel::relogin)
 
-                NOT_FOUND -> errorMessage.text = getString(R.string.not_found_error)
-
                 UNKNOWN -> errorMessage.text = getString(R.string.unknown_error)
 
                 CONNECTION -> {
                     errorMessage.text = getString(R.string.connection_error)
                     errorIcon.setImageResource(R.drawable.ic_connection_error)
                 }
-
-                REGISTRATION -> Unit
             }
         }
     }

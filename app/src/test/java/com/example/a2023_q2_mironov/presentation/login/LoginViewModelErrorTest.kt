@@ -1,10 +1,11 @@
 package com.example.a2023_q2_mironov.presentation.login
 
 import androidx.lifecycle.Observer
+import com.example.a2023_q2_mironov.domain.entity.AuthErrorType
 import com.example.a2023_q2_mironov.domain.usecase.LoginUseCase
 import com.example.a2023_q2_mironov.domain.usecase.SetUserTokenUseCase
 import com.example.a2023_q2_mironov.navigation.router.LoginRouter
-import com.example.a2023_q2_mironov.presentation.ErrorType
+import com.example.a2023_q2_mironov.presentation.login.LoginState.*
 import com.example.a2023_q2_mironov.utils.AuthData
 import com.example.a2023_q2_mironov.utils.InstantTaskExecutorExtension
 import com.example.a2023_q2_mironov.utils.TestCoroutineExtension
@@ -50,14 +51,14 @@ class LoginViewModelErrorTest {
     private val auth = AuthData.authEntity
 
     @Test
-    fun `fields valid and login returns null pointer exception EXPECT error state bot found`() =
+    fun `fields valid and login returns null pointer exception EXPECT error state not found`() =
         runTest {
             whenever(loginUseCase(auth)) doAnswer { throw NullPointerException() }
 
             viewModel.login(auth.name, auth.password)
             viewModel.state.observeForever(stateObserver)
 
-            verify(stateObserver).onChanged(Error(ErrorType.NOT_FOUND))
+            verify(stateObserver).onChanged(Error(AuthErrorType.WRONG_LOGIN_OR_PASSWORD))
         }
 
     @ParameterizedTest
@@ -69,7 +70,7 @@ class LoginViewModelErrorTest {
             viewModel.login(auth.name, auth.password)
             viewModel.state.observeForever(stateObserver)
 
-            verify(stateObserver).onChanged(Error(ErrorType.CONNECTION))
+            verify(stateObserver).onChanged(Error(AuthErrorType.CONNECTION))
         }
 
     @Test
@@ -80,6 +81,6 @@ class LoginViewModelErrorTest {
             viewModel.login(auth.name, auth.password)
             viewModel.state.observeForever(stateObserver)
 
-            verify(stateObserver).onChanged(Error(ErrorType.UNKNOWN))
+            verify(stateObserver).onChanged(Error(AuthErrorType.UNKNOWN))
         }
 }

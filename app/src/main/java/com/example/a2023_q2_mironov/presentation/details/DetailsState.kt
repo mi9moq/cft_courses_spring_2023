@@ -1,7 +1,7 @@
 package com.example.a2023_q2_mironov.presentation.details
 
 import com.example.a2023_q2_mironov.domain.entity.Loan
-import com.example.a2023_q2_mironov.presentation.ErrorType
+import com.example.a2023_q2_mironov.domain.entity.LoanErrorType
 
 sealed interface DetailsState {
 
@@ -11,5 +11,5 @@ sealed interface DetailsState {
 
     data class Content(val loan: Loan) : DetailsState
 
-    data class Error(val type: ErrorType): DetailsState
+    data class Error(val type: LoanErrorType): DetailsState
 }

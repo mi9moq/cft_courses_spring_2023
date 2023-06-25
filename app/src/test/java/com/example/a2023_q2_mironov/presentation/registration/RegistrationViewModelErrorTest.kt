@@ -1,11 +1,12 @@
 package com.example.a2023_q2_mironov.presentation.registration
 
 import androidx.lifecycle.Observer
+import com.example.a2023_q2_mironov.domain.entity.AuthErrorType
 import com.example.a2023_q2_mironov.domain.usecase.LoginUseCase
 import com.example.a2023_q2_mironov.domain.usecase.RegistrationUseCase
 import com.example.a2023_q2_mironov.domain.usecase.SetUserTokenUseCase
 import com.example.a2023_q2_mironov.navigation.router.RegistrationRouter
-import com.example.a2023_q2_mironov.presentation.ErrorType.*
+import com.example.a2023_q2_mironov.domain.entity.LoanErrorType.*
 import com.example.a2023_q2_mironov.presentation.registration.RegistrationState.*
 import com.example.a2023_q2_mironov.utils.AuthData
 import com.example.a2023_q2_mironov.utils.InstantTaskExecutorExtension
@@ -63,7 +64,7 @@ class RegistrationViewModelErrorTest {
         viewModel.registration(auth.name, auth.password)
         viewModel.state.observeForever(stateObserver)
 
-        verify(stateObserver).onChanged(Error(CONNECTION))
+        verify(stateObserver).onChanged(Error(AuthErrorType.CONNECTION))
     }
 
     @Test
@@ -74,6 +75,6 @@ class RegistrationViewModelErrorTest {
             viewModel.registration(auth.name, auth.password)
             viewModel.state.observeForever(stateObserver)
 
-            verify(stateObserver).onChanged(Error(UNKNOWN))
+            verify(stateObserver).onChanged(Error(AuthErrorType.UNKNOWN))
         }
 }

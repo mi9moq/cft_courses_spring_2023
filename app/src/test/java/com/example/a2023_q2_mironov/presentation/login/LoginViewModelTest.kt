@@ -6,6 +6,7 @@ import com.example.a2023_q2_mironov.domain.entity.Auth
 import com.example.a2023_q2_mironov.domain.usecase.LoginUseCase
 import com.example.a2023_q2_mironov.domain.usecase.SetUserTokenUseCase
 import com.example.a2023_q2_mironov.navigation.router.LoginRouter
+import com.example.a2023_q2_mironov.presentation.login.LoginState.*
 import com.example.a2023_q2_mironov.utils.InstantTaskExecutorExtension
 import com.example.a2023_q2_mironov.utils.TestCoroutineExtension
 import kotlinx.coroutines.ExperimentalCoroutinesApi

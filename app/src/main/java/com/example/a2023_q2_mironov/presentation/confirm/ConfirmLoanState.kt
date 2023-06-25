@@ -1,7 +1,7 @@
 package com.example.a2023_q2_mironov.presentation.confirm
 
 import com.example.a2023_q2_mironov.domain.entity.LoanRequest
-import com.example.a2023_q2_mironov.presentation.ErrorType
+import com.example.a2023_q2_mironov.domain.entity.LoanErrorType
 
 sealed interface ConfirmLoanState {
 
@@ -11,5 +11,5 @@ sealed interface ConfirmLoanState {
 
     data class Content(val loanRequest: LoanRequest) : ConfirmLoanState
 
-    data class Error(val type: ErrorType) : ConfirmLoanState
+    data class Error(val type: LoanErrorType) : ConfirmLoanState
 }

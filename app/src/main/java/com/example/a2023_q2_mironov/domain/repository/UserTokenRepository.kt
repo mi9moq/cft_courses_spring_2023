@@ -7,4 +7,6 @@ interface UserTokenRepository {
     fun getUserToken(): AccessUserToken
 
     fun setUserToken(token: AccessUserToken)
+
+    fun resetUserToken()
 }

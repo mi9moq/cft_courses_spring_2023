@@ -10,6 +10,8 @@ interface TokenLocalDataSource {
     fun get(): AccessUserToken
 
     fun set(token: AccessUserToken)
+
+    fun reset()
 }
 
 class TokenLocalDataSourceImpl @Inject constructor(
@@ -34,6 +36,13 @@ class TokenLocalDataSourceImpl @Inject constructor(
         application.getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE)
             .edit()
             .putString(PREFERENCE_NAME_USER_TOKEN, token.userToken)
+            .apply()
+    }
+
+    override fun reset() {
+        application.getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE)
+            .edit()
+            .remove(PREFERENCE_NAME_USER_TOKEN)
             .apply()
     }
 }

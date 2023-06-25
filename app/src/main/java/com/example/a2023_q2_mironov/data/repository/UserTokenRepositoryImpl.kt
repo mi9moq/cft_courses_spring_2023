@@ -14,4 +14,8 @@ class UserTokenRepositoryImpl @Inject constructor(
 
     override fun setUserToken(token: AccessUserToken) =
         dataSource.set(token)
+
+    override fun resetUserToken() {
+        dataSource.reset()
+    }
 }

@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.a2023_q2_mironov.domain.entity.LoanRequest
 import com.example.a2023_q2_mironov.domain.usecase.CreateLoanUseCase
 import com.example.a2023_q2_mironov.domain.usecase.GetUserTokenUseCase
+import com.example.a2023_q2_mironov.domain.usecase.ResetUserTokenUseCase
 import com.example.a2023_q2_mironov.navigation.router.ConfirmRouter
 import com.example.a2023_q2_mironov.presentation.ErrorType
 import com.example.a2023_q2_mironov.presentation.confirm.ConfirmLoanState.Content
@@ -24,7 +25,8 @@ import javax.inject.Inject
 class ConfirmLoanViewModel @Inject constructor(
     private val createLoanUseCase: CreateLoanUseCase,
     private val getUserTokenUseCase: GetUserTokenUseCase,
-    private val router: ConfirmRouter
+    private val resetUserTokenUseCase: ResetUserTokenUseCase,
+    private val router: ConfirmRouter,
 ) : ViewModel() {
 
     private val _state: MutableLiveData<ConfirmLoanState> = MutableLiveData(Initial)
@@ -60,5 +62,14 @@ class ConfirmLoanViewModel @Inject constructor(
             createLoanUseCase(token, request)
             router.openApproved()
         }
+    }
+
+    fun backToMain() {
+        router.openMain()
+    }
+
+    fun relogin() {
+        resetUserTokenUseCase()
+        router.openWelcome()
     }
 }

@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.a2023_q2_mironov.R
@@ -21,6 +20,7 @@ import com.example.a2023_q2_mironov.presentation.confirm.ConfirmLoanViewModel
 import com.example.a2023_q2_mironov.ui.activity.MainActivity
 import com.example.a2023_q2_mironov.util.formatAmount
 import com.example.a2023_q2_mironov.util.formatPercent
+import com.example.a2023_q2_mironov.util.showUnauthorizedDialog
 import javax.inject.Inject
 
 class ConfirmLoanFragment : Fragment() {
@@ -79,6 +79,9 @@ class ConfirmLoanFragment : Fragment() {
         binding.confirm.setOnClickListener {
             viewModel.createLoan()
         }
+        binding.errorButton.setOnClickListener {
+            viewModel.backToMain()
+        }
     }
 
     private fun observeViewModel() {
@@ -96,6 +99,9 @@ class ConfirmLoanFragment : Fragment() {
 
     private fun launchContentState(request: LoanRequest) {
         with(binding) {
+            contentContainer.visibility = View.VISIBLE
+            errorContainer.visibility = View.GONE
+            progressBar.visibility = View.GONE
             amountValue.text = formatAmount(requireContext(), request.amount.toLong())
             nameValue.text = request.firstName
             surnameValue.text = request.lastName
@@ -106,39 +112,30 @@ class ConfirmLoanFragment : Fragment() {
 
     private fun launchLoadingState() {
         binding.progressBar.visibility = View.VISIBLE
-        binding.container.visibility = View.GONE
+        binding.contentContainer.visibility = View.GONE
+        binding.errorContainer.visibility = View.GONE
     }
 
     private fun launchErrorState(type: ErrorType) {
-        binding.progressBar.visibility = View.GONE
-        binding.container.visibility = View.GONE
-        when (type) {
-            UNAUTHORIZED -> {
-                val message = getString(R.string.authorisation_error)
-                showToast(message)
-            }
+        with(binding) {
+            progressBar.visibility = View.GONE
+            contentContainer.visibility = View.GONE
+            errorContainer.visibility = View.VISIBLE
+            when (type) {
+                UNAUTHORIZED -> showUnauthorizedDialog(requireContext(), viewModel::relogin)
 
-            NOT_FOUND -> {
-                val message = getString(R.string.not_found_error)
-                showToast(message)
-            }
+                NOT_FOUND -> errorMessage.text = getString(R.string.not_found_error)
 
-            UNKNOWN -> {
-                val message = getString(R.string.unknown_error)
-                showToast(message)
-            }
+                UNKNOWN -> errorMessage.text = getString(R.string.unknown_error)
 
-            CONNECTION -> {
-                val message = getString(R.string.connection_error)
-                showToast(message)
-            }
+                CONNECTION -> {
+                    errorMessage.text = getString(R.string.connection_error)
+                    errorIcon.setImageResource(R.drawable.ic_connection_error)
+                }
 
-            REGISTRATION -> Unit
+                REGISTRATION -> Unit
+            }
         }
-    }
-
-    private fun showToast(message: String) {
-        Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
     }
 
     @Suppress("DEPRECATION")

@@ -24,6 +24,7 @@ import com.example.a2023_q2_mironov.util.addTextWatcher
 import com.example.a2023_q2_mironov.util.formatAmount
 import com.example.a2023_q2_mironov.util.formatPercent
 import com.example.a2023_q2_mironov.util.formatPeriod
+import com.example.a2023_q2_mironov.util.showUnauthorizedDialog
 import javax.inject.Inject
 
 class CreateLoanFragment : Fragment() {
@@ -155,7 +156,7 @@ class CreateLoanFragment : Fragment() {
         binding.contentContainer.visibility = View.GONE
         binding.errorContainer.visibility = View.VISIBLE
         when (type) {
-            UNAUTHORIZED -> binding.errorMessage.text = getString(R.string.authorisation_error)
+            UNAUTHORIZED -> showUnauthorizedDialog(requireContext(), viewModel::resetToken)
 
             NOT_FOUND -> binding.errorMessage.text = getString(R.string.not_found_error)
 

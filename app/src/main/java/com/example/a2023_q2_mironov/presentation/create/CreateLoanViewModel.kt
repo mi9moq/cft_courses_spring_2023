@@ -8,6 +8,7 @@ import com.example.a2023_q2_mironov.domain.entity.LoanConditions
 import com.example.a2023_q2_mironov.domain.entity.LoanRequest
 import com.example.a2023_q2_mironov.domain.usecase.GetLoanConditionsUseCase
 import com.example.a2023_q2_mironov.domain.usecase.GetUserTokenUseCase
+import com.example.a2023_q2_mironov.domain.usecase.ResetUserTokenUseCase
 import com.example.a2023_q2_mironov.navigation.router.CreateRouter
 import com.example.a2023_q2_mironov.presentation.ErrorType
 import com.example.a2023_q2_mironov.presentation.create.CreateLoanState.Content
@@ -25,7 +26,8 @@ import javax.inject.Inject
 class CreateLoanViewModel @Inject constructor(
     private val getLoanConditionUseCase: GetLoanConditionsUseCase,
     private val getUserTokenUseCase: GetUserTokenUseCase,
-    private val router: CreateRouter
+    private val resetUserTokenUseCase: ResetUserTokenUseCase,
+    private val router: CreateRouter,
 ) : ViewModel() {
 
     private val _state: MutableLiveData<CreateLoanState> = MutableLiveData(Initial)
@@ -49,10 +51,12 @@ class CreateLoanViewModel @Inject constructor(
                 Error(ErrorType.CONNECTION)
 
             is HttpException -> {
-                if (throwable.code() == 401)
+                if (throwable.code() == 403)
                     _state.value = Error(ErrorType.UNAUTHORIZED)
                 else if (throwable.code() == 404)
                     _state.value = Error(ErrorType.NOT_FOUND)
+                else
+                    _state.value = Error(ErrorType.UNKNOWN)
             }
 
             else -> _state.value = Error(ErrorType.UNKNOWN)
@@ -67,12 +71,17 @@ class CreateLoanViewModel @Inject constructor(
         loadCondition()
     }
 
-    fun loadCondition(){
+    fun loadCondition() {
         viewModelScope.launch(handler) {
             _state.value = Loading
             conditions = getLoanConditionUseCase(token)
             _state.value = Content(conditions)
         }
+    }
+
+    fun resetToken() {
+        resetUserTokenUseCase()
+        router.openWelcome()
     }
 
     fun creteLoan(

@@ -14,6 +14,9 @@ fun showUnauthorizedDialog(
         setPositiveButton(context.getString(R.string.login)) { _, _ ->
             onClick()
         }
+        setOnDismissListener {
+            onClick()
+        }
         create()
         show()
     }

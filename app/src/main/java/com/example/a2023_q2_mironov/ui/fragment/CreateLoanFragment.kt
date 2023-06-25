@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.a2023_q2_mironov.R
@@ -80,6 +79,9 @@ class CreateLoanFragment : Fragment() {
                     inputNumber = etPhoneNumber.text.toString()
                 )
             }
+            tryAgain.setOnClickListener {
+                viewModel.loadCondition()
+            }
         }
     }
 
@@ -134,48 +136,38 @@ class CreateLoanFragment : Fragment() {
     private fun launchContentState(conditions: LoanConditions) {
         with(binding) {
             progressBar.visibility = View.GONE
-            container.visibility = View.VISIBLE
+            contentContainer.visibility = View.VISIBLE
+            errorContainer.visibility = View.GONE
             maxAmountValue.text = formatAmount(requireContext(), conditions.maxAmount)
             percentValue.text = formatPercent(conditions.percent)
-            periodValue.text = formatPeriod(requireContext(),conditions.period)
+            periodValue.text = formatPeriod(requireContext(), conditions.period)
         }
     }
 
     private fun launchLoadingState() {
         binding.progressBar.visibility = View.VISIBLE
-        binding.container.visibility = View.GONE
+        binding.contentContainer.visibility = View.GONE
+        binding.errorContainer.visibility = View.GONE
     }
 
     private fun launchErrorState(type: ErrorType) {
         binding.progressBar.visibility = View.GONE
-        binding.container.visibility = View.GONE
+        binding.contentContainer.visibility = View.GONE
+        binding.errorContainer.visibility = View.VISIBLE
         when (type) {
-            UNAUTHORIZED -> {
-                val message = getString(R.string.authorisation_error)
-                showToast(message)
-            }
+            UNAUTHORIZED -> binding.errorMessage.text = getString(R.string.authorisation_error)
 
-            NOT_FOUND -> {
-                val message = getString(R.string.not_found_error)
-                showToast(message)
-            }
+            NOT_FOUND -> binding.errorMessage.text = getString(R.string.not_found_error)
 
-            UNKNOWN -> {
-                val message = getString(R.string.unknown_error)
-                showToast(message)
-            }
+            UNKNOWN -> binding.errorMessage.text = getString(R.string.unknown_error)
 
             CONNECTION -> {
-                val message = getString(R.string.connection_error)
-                showToast(message)
+                binding.errorMessage.text = getString(R.string.connection_error)
+                binding.errorIcon.setImageResource(R.drawable.ic_connection_error)
             }
 
             REGISTRATION -> Unit
         }
-    }
-
-    private fun showToast(message: String) {
-        Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
     }
 
     private fun addTextChangeListener() {

@@ -42,4 +42,5 @@
     <string name="name_and_lastname">%s\n%s</string>
     <string name="amount_format">%s руб</string>
     <string name="period_format">%s мес</string>
+    <string name="try_again">Повторить попытку</string>
 </resources>

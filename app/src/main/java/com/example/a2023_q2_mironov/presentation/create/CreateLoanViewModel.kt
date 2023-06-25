@@ -64,6 +64,10 @@ class CreateLoanViewModel @Inject constructor(
     private lateinit var conditions: LoanConditions
 
     init {
+        loadCondition()
+    }
+
+    fun loadCondition(){
         viewModelScope.launch(handler) {
             _state.value = Loading
             conditions = getLoanConditionUseCase(token)

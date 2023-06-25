@@ -5,17 +5,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.a2023_q2_mironov.R
 import com.example.a2023_q2_mironov.databinding.FragmentDetailsBinding
 import com.example.a2023_q2_mironov.domain.entity.Loan
 import com.example.a2023_q2_mironov.presentation.ErrorType
-import com.example.a2023_q2_mironov.presentation.ErrorType.*
-import com.example.a2023_q2_mironov.presentation.details.DetailsViewModel
+import com.example.a2023_q2_mironov.presentation.ErrorType.CONNECTION
+import com.example.a2023_q2_mironov.presentation.ErrorType.NOT_FOUND
+import com.example.a2023_q2_mironov.presentation.ErrorType.REGISTRATION
+import com.example.a2023_q2_mironov.presentation.ErrorType.UNAUTHORIZED
+import com.example.a2023_q2_mironov.presentation.ErrorType.UNKNOWN
 import com.example.a2023_q2_mironov.presentation.ViewModelFactory
 import com.example.a2023_q2_mironov.presentation.details.DetailsState
+import com.example.a2023_q2_mironov.presentation.details.DetailsViewModel
 import com.example.a2023_q2_mironov.ui.activity.MainActivity
 import com.example.a2023_q2_mironov.util.colorStatus
 import com.example.a2023_q2_mironov.util.formatAmount
@@ -23,6 +26,7 @@ import com.example.a2023_q2_mironov.util.formatDate
 import com.example.a2023_q2_mironov.util.formatLoanStatus
 import com.example.a2023_q2_mironov.util.formatPercent
 import com.example.a2023_q2_mironov.util.formatPeriod
+import com.example.a2023_q2_mironov.util.showUnauthorizedDialog
 import javax.inject.Inject
 
 class DetailsFragment : Fragment() {
@@ -35,7 +39,11 @@ class DetailsFragment : Fragment() {
         }
 
         private const val LOAN_ID = "loan id"
+
+        private const val DEFAULT_ID = 0L
     }
+
+    private var id = DEFAULT_ID
 
     private val component by lazy {
         (requireActivity() as MainActivity).component
@@ -66,15 +74,26 @@ class DetailsFragment : Fragment() {
         return binding.root
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        parseArguments()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        parseArguments()
+        setupClickListener()
         observeViewModel()
+    }
+
+    private fun setupClickListener() {
+        binding.tryAgain.setOnClickListener {
+            viewModel.loadDetails(id)
+        }
     }
 
     private fun parseArguments() {
         val args = requireArguments()
-        val id = args.getLong(LOAN_ID)
+        id = args.getLong(LOAN_ID)
         viewModel.loadDetails(id)
     }
 
@@ -94,7 +113,8 @@ class DetailsFragment : Fragment() {
     private fun launchContentState(loan: Loan) {
         with(binding) {
             progressBar.visibility = View.GONE
-            container.visibility = View.VISIBLE
+            errorContainer.visibility = View.GONE
+            contentContainer.visibility = View.VISIBLE
             date.text = formatDate(loan.date)
             amount.text = formatAmount(requireContext(), loan.amount)
             name.text = loan.firstName
@@ -103,45 +123,36 @@ class DetailsFragment : Fragment() {
             surname.text = loan.lastName
             phoneNumber.text = loan.phoneNumber
             percent.text = formatPercent(loan.percent)
-            period.text = formatPeriod(requireContext(),loan.period)
+            period.text = formatPeriod(requireContext(), loan.period)
         }
     }
 
     private fun launchLoadingState() {
         binding.progressBar.visibility = View.VISIBLE
-        binding.container.visibility = View.GONE
+        binding.errorContainer.visibility = View.GONE
+        binding.contentContainer.visibility = View.GONE
     }
 
     private fun launchErrorState(type: ErrorType) {
-        binding.progressBar.visibility = View.GONE
-        binding.container.visibility = View.GONE
-        when (type) {
-            UNAUTHORIZED -> {
-                val message = getString(R.string.authorisation_error)
-                showToast(message)
-            }
+        with(binding) {
+            progressBar.visibility = View.GONE
+            contentContainer.visibility = View.GONE
+            errorContainer.visibility = View.VISIBLE
+            when (type) {
+                UNAUTHORIZED -> showUnauthorizedDialog(requireContext(), viewModel::relogin)
 
-            NOT_FOUND -> {
-                val message = getString(R.string.not_found_error)
-                showToast(message)
-            }
+                NOT_FOUND -> errorMessage.text = getString(R.string.not_found_error)
 
-            UNKNOWN -> {
-                val message = getString(R.string.unknown_error)
-                showToast(message)
-            }
+                UNKNOWN -> errorMessage.text = getString(R.string.unknown_error)
 
-            CONNECTION -> {
-                val message = getString(R.string.connection_error)
-                showToast(message)
-            }
+                CONNECTION -> {
+                    errorMessage.text = getString(R.string.connection_error)
+                    errorIcon.setImageResource(R.drawable.ic_connection_error)
+                }
 
-            REGISTRATION -> Unit
+                REGISTRATION -> Unit
+            }
         }
-    }
-
-    private fun showToast(message: String) {
-        Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
     }
 
     override fun onDestroyView() {

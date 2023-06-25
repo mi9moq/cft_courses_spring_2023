@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.a2023_q2_mironov.domain.usecase.GetLoanByIdUseCase
 import com.example.a2023_q2_mironov.domain.usecase.GetUserTokenUseCase
+import com.example.a2023_q2_mironov.domain.usecase.ResetUserTokenUseCase
+import com.example.a2023_q2_mironov.navigation.router.DetailsRouter
 import com.example.a2023_q2_mironov.presentation.ErrorType
 import com.example.a2023_q2_mironov.presentation.details.DetailsState.Content
 import com.example.a2023_q2_mironov.presentation.details.DetailsState.Error
@@ -21,7 +23,9 @@ import javax.inject.Inject
 
 class DetailsViewModel @Inject constructor(
     private val getUserTokenUseCase: GetUserTokenUseCase,
-    private val getLoanByIdUseCase: GetLoanByIdUseCase
+    private val getLoanByIdUseCase: GetLoanByIdUseCase,
+    private val resetUserTokenUseCase: ResetUserTokenUseCase,
+    private val router: DetailsRouter,
 ) : ViewModel() {
 
     private val _state: MutableLiveData<DetailsState> = MutableLiveData(Initial)
@@ -33,10 +37,12 @@ class DetailsViewModel @Inject constructor(
                 Error(ErrorType.CONNECTION)
 
             is HttpException -> {
-                if (throwable.code() == 401)
+                if (throwable.code() == 403)
                     _state.value = Error(ErrorType.UNAUTHORIZED)
                 else if (throwable.code() == 404)
                     _state.value = Error(ErrorType.NOT_FOUND)
+                else
+                    _state.value = Error(ErrorType.UNKNOWN)
             }
 
             else -> _state.value = Error(ErrorType.UNKNOWN)
@@ -50,5 +56,10 @@ class DetailsViewModel @Inject constructor(
             val loan = getLoanByIdUseCase(token, id)
             _state.value = Content(loan)
         }
+    }
+
+    fun relogin() {
+        resetUserTokenUseCase()
+        router.openWelcome()
     }
 }

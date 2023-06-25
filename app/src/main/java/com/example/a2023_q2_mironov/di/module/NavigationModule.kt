@@ -7,6 +7,8 @@ import com.example.a2023_q2_mironov.navigation.router.ConfirmRouter
 import com.example.a2023_q2_mironov.navigation.router.ConfirmRouterImpl
 import com.example.a2023_q2_mironov.navigation.router.CreateRouter
 import com.example.a2023_q2_mironov.navigation.router.CreateRouterImpl
+import com.example.a2023_q2_mironov.navigation.router.DetailsRouter
+import com.example.a2023_q2_mironov.navigation.router.DetailsRouterImpl
 import com.example.a2023_q2_mironov.navigation.router.GuidRouter
 import com.example.a2023_q2_mironov.navigation.router.GuidRouterImpl
 import com.example.a2023_q2_mironov.navigation.router.HistoryRouter
@@ -82,4 +84,8 @@ interface NavigationModule {
     @Binds
     @AppScope
     fun bindApprovedRouter(impl: ApprovedRouterImpl): ApprovedRouter
+
+    @Binds
+    @AppScope
+    fun bindDetailsRouter(impl: DetailsRouterImpl): DetailsRouter
 }

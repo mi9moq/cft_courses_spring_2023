@@ -80,7 +80,7 @@ class ConfirmLoanFragment : Fragment() {
             viewModel.createLoan()
         }
         binding.errorButton.setOnClickListener {
-            viewModel.backToMain()
+            viewModel.createLoan()
         }
     }
 
@@ -124,11 +124,21 @@ class ConfirmLoanFragment : Fragment() {
             when (type) {
                 UNAUTHORIZED -> showUnauthorizedDialog(requireContext(), viewModel::relogin)
 
-                UNKNOWN -> errorMessage.text = getString(R.string.unknown_error)
+                UNKNOWN -> {
+                    errorMessage.text = getString(R.string.unknown_error)
+                    errorButton.text = getString(R.string.main_screen)
+                    errorButton.setOnClickListener {
+                        viewModel.backToMain()
+                    }
+                }
 
                 CONNECTION -> {
                     errorMessage.text = getString(R.string.connection_error)
                     errorIcon.setImageResource(R.drawable.ic_connection_error)
+                    errorButton.text = getString(R.string.try_again)
+                    errorButton.setOnClickListener {
+                        viewModel.createLoan()
+                    }
                 }
             }
         }

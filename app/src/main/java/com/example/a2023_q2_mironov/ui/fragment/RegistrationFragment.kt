@@ -106,10 +106,8 @@ class RegistrationFragment : Fragment() {
                 showToast(message)
             }
 
-            REGISTRATION -> {
-                val message = getString(R.string.registration_error)
-                showToast(message)
-            }
+            REGISTRATION -> binding.tilLogin.error = getString(R.string.registration_error)
+
         }
     }
 

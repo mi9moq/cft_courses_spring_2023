@@ -81,10 +81,10 @@ class LoginFragment : Fragment() {
             }
             binding.tilPassword.error = message
         }
-        viewModel.state.observe(viewLifecycleOwner,::launchState)
+        viewModel.state.observe(viewLifecycleOwner, ::launchState)
     }
 
-    private fun launchState(state:LoginState){
+    private fun launchState(state: LoginState) {
         when (state) {
             Initial -> Unit
             is Error -> launchErrorState(state.type)
@@ -97,10 +97,8 @@ class LoginFragment : Fragment() {
         binding.content.visibility = View.VISIBLE
         when (type) {
             UNAUTHORIZED -> Unit
-            NOT_FOUND -> {
-                val message = getString(R.string.wrong_log_or_pas)
-                showToast(message)
-            }
+            NOT_FOUND -> binding.tilPassword.error = getString(R.string.wrong_log_or_pas)
+
 
             UNKNOWN -> {
                 val message = getString(R.string.unknown_error)

@@ -4,9 +4,11 @@ import android.app.Application
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito.mock
 import org.mockito.kotlin.doReturn
+import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
 class TokenLocalDataSourceImplTest {
@@ -17,17 +19,23 @@ class TokenLocalDataSourceImplTest {
         private const val DEFAULT_VALUE = ""
     }
 
-    private val application = mock(Application::class.java)
+    private val application: Application = mock()
     private val dataSource = TokenLocalDataSourceImpl(application)
+    private val sharedPreferences: SharedPreferences = mock()
+    private val editor: SharedPreferences.Editor = mock()
 
     private val testToken = "user token"
 
-    @Test
-    fun `preferences is empty EXPECT default value`(){
+    @BeforeEach
+    fun setupSharedPreferences(){
         whenever(application.getSharedPreferences(
             APP_PREFERENCES,
             MODE_PRIVATE
-        )) doReturn mock(SharedPreferences::class.java)
+        )) doReturn sharedPreferences
+    }
+
+    @Test
+    fun `preferences is empty EXPECT default value`(){
         whenever(application.getSharedPreferences(
             APP_PREFERENCES,
             MODE_PRIVATE
@@ -44,10 +52,6 @@ class TokenLocalDataSourceImplTest {
         whenever(application.getSharedPreferences(
             APP_PREFERENCES,
             MODE_PRIVATE
-        )) doReturn mock(SharedPreferences::class.java)
-        whenever(application.getSharedPreferences(
-            APP_PREFERENCES,
-            MODE_PRIVATE
         ).getString(PREFERENCE_NAME_USER_TOKEN, DEFAULT_VALUE)) doReturn testToken
 
         val actual = dataSource.get().userToken
@@ -55,8 +59,17 @@ class TokenLocalDataSourceImplTest {
 
         assertEquals(expected, actual)
     }
+
     @Test
-    fun `set EXPECT save token to preferences`(){
-        // TODO проверить что значение сохраняется
+    fun `reset EXPECT clean preferences`(){
+        whenever(application.getSharedPreferences(
+            APP_PREFERENCES,
+            MODE_PRIVATE
+        ).edit()) doReturn editor
+
+        dataSource.reset()
+
+        verify(editor).remove(PREFERENCE_NAME_USER_TOKEN)
+        verify(editor).apply()
     }
 }

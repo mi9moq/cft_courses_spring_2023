@@ -8,29 +8,30 @@
         android:id="@+id/guid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/how_to_use"
-        android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:drawableLeft="@drawable/ic_user_guide"
-        android:layout_marginEnd="16dp"/>
+        android:text="@string/how_to_use" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/new_loan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/get_a_loan"
-        android:layout_marginTop="16dp"
-        android:drawableLeft="@drawable/ic_create_loan"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"/>
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:drawableLeft="@drawable/ic_create_loan"
+        android:text="@string/get_a_loan" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/history"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/loan_history"
-        android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"/>
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:drawableLeft="@drawable/ic_history"
+        android:text="@string/loan_history" />
 
 </LinearLayout>

@@ -33,4 +33,12 @@ class UserTokenRepositoryImplTest {
 
         verify(dataSource).set(testToken)
     }
+
+    @Test
+    fun `resetUserToken EXPECT rest token`(){
+
+        repository.resetUserToken()
+
+        verify(dataSource).reset()
+    }
 }

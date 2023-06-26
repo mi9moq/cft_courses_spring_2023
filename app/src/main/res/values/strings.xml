@@ -43,4 +43,5 @@
     <string name="amount_format">%s rub</string>
     <string name="period_format">%s months</string>
     <string name="try_again">try again</string>
+    <string name="proceed_to_loan_application">Proceed to loan application</string>
 </resources>

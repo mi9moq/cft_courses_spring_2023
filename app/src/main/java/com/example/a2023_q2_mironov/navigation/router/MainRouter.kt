@@ -1,6 +1,6 @@
 package com.example.a2023_q2_mironov.navigation.router
 
-import com.example.a2023_q2_mironov.navigation.screen.getConditionScreen
+import com.example.a2023_q2_mironov.navigation.screen.getCreateScreen
 import com.example.a2023_q2_mironov.navigation.screen.getGuidScreen
 import com.example.a2023_q2_mironov.navigation.screen.getHistoryScreen
 import com.github.terrakok.cicerone.Router
@@ -28,6 +28,6 @@ class MainRouterImpl @Inject constructor(
     }
 
     override fun openCreate() {
-        router.navigateTo(getConditionScreen())
+        router.navigateTo(getCreateScreen())
     }
 }

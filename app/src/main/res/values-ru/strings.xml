@@ -44,4 +44,5 @@
     <string name="amount_format">%s руб</string>
     <string name="period_format">%s мес</string>
     <string name="try_again">Повторить попытку</string>
+    <string name="proceed_to_loan_application">Перейти к оформлению</string>
 </resources>

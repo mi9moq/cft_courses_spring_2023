@@ -5,20 +5,25 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.a2023_q2_mironov.R
 import com.example.a2023_q2_mironov.databinding.FragmentHistoryBinding
 import com.example.a2023_q2_mironov.domain.entity.Loan
 import com.example.a2023_q2_mironov.domain.entity.LoanErrorType
-import com.example.a2023_q2_mironov.domain.entity.LoanErrorType.*
+import com.example.a2023_q2_mironov.domain.entity.LoanErrorType.CONNECTION
+import com.example.a2023_q2_mironov.domain.entity.LoanErrorType.UNAUTHORIZED
+import com.example.a2023_q2_mironov.domain.entity.LoanErrorType.UNKNOWN
 import com.example.a2023_q2_mironov.presentation.ViewModelFactory
 import com.example.a2023_q2_mironov.presentation.history.HistoryState
-import com.example.a2023_q2_mironov.presentation.history.HistoryState.*
+import com.example.a2023_q2_mironov.presentation.history.HistoryState.Content
+import com.example.a2023_q2_mironov.presentation.history.HistoryState.Error
+import com.example.a2023_q2_mironov.presentation.history.HistoryState.Initial
+import com.example.a2023_q2_mironov.presentation.history.HistoryState.Loading
 import com.example.a2023_q2_mironov.presentation.history.HistoryViewModel
 import com.example.a2023_q2_mironov.ui.activity.MainActivity
 import com.example.a2023_q2_mironov.ui.adapter.HistoryAdapter
+import com.example.a2023_q2_mironov.util.showUnauthorizedDialog
 import javax.inject.Inject
 
 class HistoryFragment : Fragment() {
@@ -60,7 +65,17 @@ class HistoryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupClickListener()
         observeViewModel()
+    }
+
+    private fun setupClickListener() {
+        binding.createLoan.setOnClickListener {
+            viewModel.openCreate()
+        }
+        binding.errorButton.setOnClickListener {
+            viewModel.loadHistory()
+        }
     }
 
     private fun observeViewModel() {
@@ -77,47 +92,50 @@ class HistoryFragment : Fragment() {
     }
 
     private fun launchContentState(loans: List<Loan>) {
-        binding.progressBar.visibility = View.GONE
-        binding.historyList.visibility = View.VISIBLE
-        if (loans.isEmpty()) {
-            binding.historyList.visibility = View.GONE
-            binding.noLoans.visibility = View.VISIBLE
-        } else {
-            binding.historyList.adapter = historyAdapter
-            historyAdapter.submitList(loans)
+        with(binding) {
+            progressBar.visibility = View.GONE
+            errorContainer.visibility = View.GONE
+            if (loans.isEmpty()) {
+                historyList.visibility = View.GONE
+                noLoans.visibility = View.VISIBLE
+                createLoan.visibility = View.VISIBLE
+            } else {
+                noLoans.visibility = View.GONE
+                createLoan.visibility = View.GONE
+                historyList.visibility = View.VISIBLE
+                historyList.adapter = historyAdapter
+                historyAdapter.submitList(loans)
+            }
         }
     }
 
     private fun launchErrorState(type: LoanErrorType) {
-        binding.progressBar.visibility = View.GONE
-        binding.historyList.visibility = View.GONE
-        when (type) {
-            UNAUTHORIZED -> {
-                val message = getString(R.string.authorisation_error)
-                showToast(message)
-            }
+        with(binding) {
+            errorContainer.visibility = View.VISIBLE
+            progressBar.visibility = View.GONE
+            historyList.visibility = View.GONE
+            noLoans.visibility = View.GONE
+            createLoan.visibility = View.GONE
+            when (type) {
+                UNAUTHORIZED -> showUnauthorizedDialog(requireContext(), viewModel::relogin)
 
-            UNKNOWN -> {
-                val message = getString(R.string.unknown_error)
-                showToast(message)
-            }
+                UNKNOWN -> errorMessage.text = getString(R.string.unknown_error)
 
-            CONNECTION -> {
-                val message = getString(R.string.connection_error)
-                showToast(message)
+                CONNECTION -> {
+                    errorMessage.text = getString(R.string.connection_error)
+                    errorIcon.setImageResource(R.drawable.ic_connection_error)
+                }
             }
         }
-    }
-
-    private fun showToast(message: String) {
-        Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
     }
 
     private fun launchLoadingState() {
         with(binding) {
             historyList.visibility = View.GONE
             noLoans.visibility = View.GONE
+            createLoan.visibility = View.GONE
             progressBar.visibility = View.VISIBLE
+            errorContainer.visibility = View.GONE
         }
     }
 

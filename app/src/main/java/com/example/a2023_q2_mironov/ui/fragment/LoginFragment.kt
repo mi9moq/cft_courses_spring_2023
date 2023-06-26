@@ -14,6 +14,7 @@ import com.example.a2023_q2_mironov.domain.entity.AuthErrorType
 import com.example.a2023_q2_mironov.domain.entity.AuthErrorType.*
 import com.example.a2023_q2_mironov.presentation.ViewModelFactory
 import com.example.a2023_q2_mironov.presentation.login.LoginState
+import com.example.a2023_q2_mironov.presentation.login.LoginState.*
 import com.example.a2023_q2_mironov.presentation.login.LoginViewModel
 import com.example.a2023_q2_mironov.ui.activity.MainActivity
 import com.example.a2023_q2_mironov.util.addTextWatcher
@@ -63,29 +64,22 @@ class LoginFragment : Fragment() {
 
     private fun observeViewModel() {
         viewModel.errorInputName.observe(viewLifecycleOwner) { invalidValue ->
-            val message = if (invalidValue) {
-                getString(R.string.empty_field)
-            } else {
-                null
-            }
-            binding.tilLogin.error = message
+            binding.tilLogin.error = emptyFieldMessage(invalidValue)
         }
         viewModel.errorInputPassword.observe(viewLifecycleOwner) { invalidValue ->
-            val message = if (invalidValue) {
-                getString(R.string.empty_field)
-            } else {
-                null
-            }
-            binding.tilPassword.error = message
+            binding.tilPassword.error = emptyFieldMessage(invalidValue)
         }
         viewModel.state.observe(viewLifecycleOwner, ::launchState)
     }
 
+    private fun emptyFieldMessage(invalid: Boolean): String? =
+        if (invalid) getString(R.string.empty_field) else null
+
     private fun launchState(state: LoginState) {
         when (state) {
-            LoginState.Initial -> Unit
-            LoginState.Loading -> launchLoadingState()
-            is LoginState.Error -> launchErrorState(state.type)
+            Initial -> Unit
+            Loading -> launchLoadingState()
+            is Error -> launchErrorState(state.type)
         }
     }
 

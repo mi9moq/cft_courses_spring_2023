@@ -88,38 +88,24 @@ class CreateLoanFragment : Fragment() {
 
     private fun validateInput() {
         viewModel.errorInputAmount.observe(viewLifecycleOwner) { invalidValue ->
-            val message = if (invalidValue) {
-                getString(R.string.invalid_value)
-            } else {
-                null
-            }
-            binding.tilAmount.error = message
+            binding.tilAmount.error = invalidValuedMessage(invalidValue)
         }
         viewModel.errorInputName.observe(viewLifecycleOwner) { invalidValue ->
-            val message = if (invalidValue) {
-                getString(R.string.empty_field)
-            } else {
-                null
-            }
-            binding.tilFirstName.error = message
+            binding.tilFirstName.error = emptyFieldMessage(invalidValue)
         }
         viewModel.errorInputSurname.observe(viewLifecycleOwner) { invalidValue ->
-            val message = if (invalidValue) {
-                getString(R.string.empty_field)
-            } else {
-                null
-            }
-            binding.tilLastName.error = message
+            binding.tilLastName.error = emptyFieldMessage(invalidValue)
         }
         viewModel.errorInputPhoneNumber.observe(viewLifecycleOwner) { invalidValue ->
-            val message = if (invalidValue) {
-                getString(R.string.empty_field)
-            } else {
-                null
-            }
-            binding.tilPhoneNumber.error = message
+            binding.tilPhoneNumber.error = emptyFieldMessage(invalidValue)
         }
     }
+
+    private fun emptyFieldMessage(invalid: Boolean): String? =
+        if (invalid) getString(R.string.empty_field) else null
+
+    private fun invalidValuedMessage(invalid: Boolean): String? =
+        if (invalid) getString(R.string.invalid_value) else null
 
     private fun observeViewModel() {
         viewModel.state.observe(viewLifecycleOwner, ::launchState)

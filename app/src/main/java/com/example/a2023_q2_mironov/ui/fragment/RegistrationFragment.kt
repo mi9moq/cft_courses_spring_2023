@@ -11,8 +11,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.a2023_q2_mironov.R
 import com.example.a2023_q2_mironov.databinding.FragmentRegistrationBinding
 import com.example.a2023_q2_mironov.domain.entity.AuthErrorType
+import com.example.a2023_q2_mironov.domain.entity.AuthErrorType.*
 import com.example.a2023_q2_mironov.presentation.ViewModelFactory
 import com.example.a2023_q2_mironov.presentation.registration.RegistrationState
+import com.example.a2023_q2_mironov.presentation.registration.RegistrationState.*
 import com.example.a2023_q2_mironov.presentation.registration.RegistrationViewModel
 import com.example.a2023_q2_mironov.ui.activity.MainActivity
 import com.example.a2023_q2_mironov.util.addTextWatcher
@@ -62,29 +64,22 @@ class RegistrationFragment : Fragment() {
 
     private fun observeViewModel() {
         viewModel.errorInputName.observe(viewLifecycleOwner) { invalidValue ->
-            val message = if (invalidValue) {
-                getString(R.string.empty_field)
-            } else {
-                null
-            }
-            binding.tilLogin.error = message
+            binding.tilLogin.error = emptyFieldMessage(invalidValue)
         }
         viewModel.errorInputPassword.observe(viewLifecycleOwner) { invalidValue ->
-            val message = if (invalidValue) {
-                getString(R.string.empty_field)
-            } else {
-                null
-            }
-            binding.tilPassword.error = message
+            binding.tilPassword.error = emptyFieldMessage(invalidValue)
         }
         viewModel.state.observe(viewLifecycleOwner, ::launchState)
     }
 
+    private fun emptyFieldMessage(invalid: Boolean): String? =
+        if (invalid) getString(R.string.empty_field) else null
+
     private fun launchState(state: RegistrationState) {
         when (state) {
-            RegistrationState.Initial -> Unit
-            is RegistrationState.Error -> launchErrorState(state.type)
-            RegistrationState.Loading -> launchLoadingState()
+            Initial -> Unit
+            is Error -> launchErrorState(state.type)
+            Loading -> launchLoadingState()
         }
     }
 
@@ -92,19 +87,19 @@ class RegistrationFragment : Fragment() {
         binding.progressBar.visibility = View.GONE
         binding.content.visibility = View.VISIBLE
         when (type) {
-            AuthErrorType.WRONG_LOGIN_OR_PASSWORD -> Unit
+            WRONG_LOGIN_OR_PASSWORD -> Unit
 
-            AuthErrorType.UNKNOWN -> {
+            UNKNOWN -> {
                 val message = getString(R.string.unknown_error)
                 showToast(message)
             }
 
-            AuthErrorType.CONNECTION -> {
+            CONNECTION -> {
                 val message = getString(R.string.connection_error)
                 showToast(message)
             }
 
-            AuthErrorType.USER_EXIST -> binding.tilLogin.error =
+            USER_EXIST -> binding.tilLogin.error =
                 getString(R.string.user_exists)
 
         }

@@ -1,6 +1,8 @@
 package com.example.a2023_q2_mironov.ui.fragment
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,8 +16,10 @@ import com.example.a2023_q2_mironov.domain.entity.LoanErrorType
 import com.example.a2023_q2_mironov.domain.entity.LoanErrorType.CONNECTION
 import com.example.a2023_q2_mironov.domain.entity.LoanErrorType.UNAUTHORIZED
 import com.example.a2023_q2_mironov.domain.entity.LoanErrorType.UNKNOWN
+import com.example.a2023_q2_mironov.domain.entity.LoanStatus
 import com.example.a2023_q2_mironov.presentation.ViewModelFactory
 import com.example.a2023_q2_mironov.presentation.details.DetailsState
+import com.example.a2023_q2_mironov.presentation.details.DetailsState.*
 import com.example.a2023_q2_mironov.presentation.details.DetailsViewModel
 import com.example.a2023_q2_mironov.ui.activity.MainActivity
 import com.example.a2023_q2_mironov.util.colorStatus
@@ -101,10 +105,10 @@ class DetailsFragment : Fragment() {
 
     private fun launchState(state: DetailsState) {
         when (state) {
-            DetailsState.Initial -> Unit
-            DetailsState.Loading -> launchLoadingState()
-            is DetailsState.Content -> launchContentState(state.loan)
-            is DetailsState.Error -> launchErrorState(state.type)
+            Initial -> Unit
+            Loading -> launchLoadingState()
+            is Content -> launchContentState(state.loan)
+            is Error -> launchErrorState(state.type)
         }
     }
 
@@ -122,13 +126,36 @@ class DetailsFragment : Fragment() {
             phoneNumber.text = loan.phoneNumber
             percent.text = formatPercent(loan.percent)
             period.text = formatPeriod(requireContext(), loan.period)
+            when (loan.status) {
+                LoanStatus.APPROVED -> {
+                    getMoney.visibility = View.VISIBLE
+                    getLoan()
+                }
+                else -> getMoney.visibility = View.GONE
+            }
         }
+    }
+
+    private fun getLoan() {
+        binding.findBank.setOnClickListener {
+            openMaps()
+        }
+    }
+
+    private fun openMaps() {
+        val city = getString(R.string.novosibirsk)
+        val bank = getString(R.string.sberbank)
+        val uri = Uri.parse("geo:0,0?q=$bank $city")
+        val intent = Intent(Intent.ACTION_VIEW, uri)
+        intent.setPackage("com.google.android.apps.maps")
+        startActivity(intent)
     }
 
     private fun launchLoadingState() {
         binding.progressBar.visibility = View.VISIBLE
         binding.errorContainer.visibility = View.GONE
         binding.contentContainer.visibility = View.GONE
+        binding.getMoney.visibility = View.GONE
     }
 
     private fun launchErrorState(type: LoanErrorType) {
@@ -136,6 +163,7 @@ class DetailsFragment : Fragment() {
             progressBar.visibility = View.GONE
             contentContainer.visibility = View.GONE
             errorContainer.visibility = View.VISIBLE
+            getMoney.visibility = View.GONE
             when (type) {
                 UNAUTHORIZED -> showUnauthorizedDialog(requireContext(), viewModel::relogin)
 

@@ -220,5 +220,52 @@
                 android:layout_weight="1"
                 tools:text="@tools:sample/us_phones" />
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/get_money"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/DetailsStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/congratulations" />
+
+            <TextView
+                style="@style/DetailsStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/transfer_to_card" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoLink="phone"
+                android:linksClickable="true"
+                android:padding="4dp"
+                android:text="@string/call_center_phone" />
+
+            <TextView
+                style="@style/DetailsStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/take_in_bank" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/find_bank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/white"
+                android:text="@string/find_nearest_branch"
+                android:textColor="@color/blue"
+                android:textSize="8sp"
+                tools:ignore="SmallSp" />
+
+        </LinearLayout>
     </LinearLayout>
 </FrameLayout>

@@ -33,7 +33,7 @@
     <string name="guid_confirm">Confirm your information and complete the loan application</string>
     <string name="guid_finish">The loan application has been successfully submitted</string>
     <string name="confirm">confirm</string>
-    <string name="loan_submitted">The loan application has been successfully submitted</string>
+    <string name="loan_submitted">Loan application has been successfully submitted. Please wait for it to be reviewed. You can check the current status of your application on the loan history screen.</string>
     <string name="main_screen">main screen</string>
     <string name="approved">APPROVED</string>
     <string name="registered">REGISTERED</string>
@@ -44,4 +44,11 @@
     <string name="period_format">%s months</string>
     <string name="try_again">try again</string>
     <string name="proceed_to_loan_application">Proceed to loan application</string>
+    <string name="novosibirsk">Novosibirsk</string>
+    <string name="sberbank">Sberbank</string>
+    <string name="congratulations">Congratulations, your loan has been approved.</string>
+    <string name="transfer_to_card">You can request a transfer to your card by contacting the operator at:</string>
+    <string name="take_in_bank">Alternatively, you can receive the money in cash at the bank branch.</string>
+    <string name="find_nearest_branch">find nearest branch</string>
+    <string name="call_center_phone" translatable="false">+79876543210</string>
 </resources>

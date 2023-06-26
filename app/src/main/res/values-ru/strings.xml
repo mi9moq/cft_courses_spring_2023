@@ -34,7 +34,7 @@
     <string name="guid_confirm">Подтвердите данные и завершите оформление займа</string>
     <string name="guid_finish">Заявка на займ успешно оформлена</string>
     <string name="confirm">подтвердить</string>
-    <string name="loan_submitted">Заявка на займ успешно оформлена</string>
+    <string name="loan_submitted">Заявка на займ успешно оформлена, ожидайте рассмотрения. Актуальный статус заявки можно узнать на экране истории займов.</string>
     <string name="main_screen">на главный экран</string>
     <string name="approved">ОДОБРЕНА</string>
     <string name="registered">ПРИНЯТА</string>
@@ -45,4 +45,10 @@
     <string name="period_format">%s мес</string>
     <string name="try_again">Повторить попытку</string>
     <string name="proceed_to_loan_application">Перейти к оформлению</string>
+    <string name="novosibirsk">Новосибирск</string>
+    <string name="sberbank">Сбербанк</string>
+    <string name="congratulations">Поздравляем, вам одобрен займ</string>
+    <string name="transfer_to_card">Вы можете запросить перевод средств на карту, связавшись с оператором по номеру:</string>
+    <string name="take_in_bank">Либо получить деньги наличными в отделении банка/</string>
+    <string name="find_nearest_branch">найти ближайшее отделение/</string>
 </resources>

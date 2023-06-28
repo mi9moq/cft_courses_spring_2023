@@ -80,10 +80,10 @@
 
         <TextView
             android:id="@+id/amount"
+            style="@style/TextViewContent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            style="@style/TextViewStyle"
             android:text="@string/amount"
             app:layout_constraintEnd_toStartOf="@+id/middle_guideline"
             app:layout_constraintStart_toStartOf="@+id/left_guideline"
@@ -91,10 +91,10 @@
 
         <TextView
             android:id="@+id/amount_value"
+            style="@style/TextViewContent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            style="@style/TextViewStyle"
             app:layout_constraintEnd_toStartOf="@+id/right_guideline"
             app:layout_constraintStart_toStartOf="@+id/middle_guideline"
             app:layout_constraintTop_toTopOf="parent"
@@ -102,10 +102,10 @@
 
         <TextView
             android:id="@+id/name"
+            style="@style/TextViewContent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            style="@style/TextViewStyle"
             android:text="@string/name"
             app:layout_constraintEnd_toStartOf="@+id/middle_guideline"
             app:layout_constraintStart_toStartOf="@+id/left_guideline"
@@ -113,10 +113,10 @@
 
         <TextView
             android:id="@+id/name_value"
+            style="@style/TextViewContent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            style="@style/TextViewStyle"
             app:layout_constraintEnd_toStartOf="@+id/right_guideline"
             app:layout_constraintStart_toStartOf="@+id/middle_guideline"
             app:layout_constraintTop_toBottomOf="@+id/amount_value"
@@ -124,10 +124,10 @@
 
         <TextView
             android:id="@+id/surname"
+            style="@style/TextViewContent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            style="@style/TextViewStyle"
             android:text="@string/surname"
             app:layout_constraintEnd_toStartOf="@+id/middle_guideline"
             app:layout_constraintStart_toStartOf="@+id/left_guideline"
@@ -135,10 +135,10 @@
 
         <TextView
             android:id="@+id/surname_value"
+            style="@style/TextViewContent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            style="@style/TextViewStyle"
             app:layout_constraintEnd_toStartOf="@+id/right_guideline"
             app:layout_constraintStart_toStartOf="@+id/middle_guideline"
             app:layout_constraintTop_toBottomOf="@+id/name_value"
@@ -146,10 +146,10 @@
 
         <TextView
             android:id="@+id/phone_number"
+            style="@style/TextViewContent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            style="@style/TextViewStyle"
             android:text="@string/phone_number"
             app:layout_constraintEnd_toStartOf="@+id/middle_guideline"
             app:layout_constraintStart_toStartOf="@+id/left_guideline"
@@ -157,8 +157,8 @@
 
         <TextView
             android:id="@+id/phone_number_value"
+            style="@style/TextViewContent"
             android:layout_width="0dp"
-            style="@style/TextViewStyle"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
 
@@ -169,10 +169,10 @@
 
         <TextView
             android:id="@+id/percent"
+            style="@style/TextViewContent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            style="@style/TextViewStyle"
             android:text="@string/percent"
             app:layout_constraintEnd_toStartOf="@+id/middle_guideline"
             app:layout_constraintStart_toStartOf="@+id/left_guideline"
@@ -180,10 +180,10 @@
 
         <TextView
             android:id="@+id/percent_value"
+            style="@style/TextViewContent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            style="@style/TextViewStyle"
             app:layout_constraintEnd_toStartOf="@+id/right_guideline"
             app:layout_constraintStart_toStartOf="@+id/middle_guideline"
             app:layout_constraintTop_toBottomOf="@+id/phone_number_value"

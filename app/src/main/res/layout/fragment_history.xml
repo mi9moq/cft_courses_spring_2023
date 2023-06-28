@@ -17,14 +17,13 @@
 
     <TextView
         android:id="@+id/no_loans"
+        style="@style/TextViewHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="64dp"
         android:gravity="center"
         android:text="@string/you_don_t_have_loans"
-        android:textColor="@color/black"
-        android:textSize="24sp"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

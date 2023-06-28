@@ -25,15 +25,14 @@
 
     <TextView
         android:id="@+id/textView"
+        style="@style/TextViewHeader"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="128dp"
         android:text="@string/loan_submitted"
-        app:layout_constraintStart_toEndOf="@id/left_guideline"
         app:layout_constraintEnd_toStartOf="@id/right_guideline"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textColor="@color/black"
-        android:textSize="20sp"/>
+        app:layout_constraintStart_toEndOf="@id/left_guideline"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/back_to_main"
@@ -42,6 +41,6 @@
         android:layout_marginBottom="16dp"
         android:text="@string/main_screen"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/left_guideline"
-        app:layout_constraintEnd_toStartOf="@id/right_guideline"/>
+        app:layout_constraintEnd_toStartOf="@id/right_guideline"
+        app:layout_constraintStart_toEndOf="@id/left_guideline" />
 </androidx.constraintlayout.widget.ConstraintLayout>

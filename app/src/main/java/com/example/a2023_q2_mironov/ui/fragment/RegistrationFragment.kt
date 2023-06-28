@@ -17,7 +17,7 @@ import com.example.a2023_q2_mironov.presentation.registration.RegistrationState
 import com.example.a2023_q2_mironov.presentation.registration.RegistrationState.*
 import com.example.a2023_q2_mironov.presentation.registration.RegistrationViewModel
 import com.example.a2023_q2_mironov.ui.activity.MainActivity
-import com.example.a2023_q2_mironov.util.addTextWatcher
+import com.example.a2023_q2_mironov.ui.util.addTextWatcher
 import javax.inject.Inject
 
 class RegistrationFragment : Fragment() {

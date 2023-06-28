@@ -20,11 +20,11 @@ import com.example.a2023_q2_mironov.presentation.create.CreateLoanState.Initial
 import com.example.a2023_q2_mironov.presentation.create.CreateLoanState.Loading
 import com.example.a2023_q2_mironov.presentation.create.CreateLoanViewModel
 import com.example.a2023_q2_mironov.ui.activity.MainActivity
-import com.example.a2023_q2_mironov.util.addTextWatcher
-import com.example.a2023_q2_mironov.util.formatAmount
-import com.example.a2023_q2_mironov.util.formatPercent
-import com.example.a2023_q2_mironov.util.formatPeriod
-import com.example.a2023_q2_mironov.util.showUnauthorizedDialog
+import com.example.a2023_q2_mironov.ui.util.addTextWatcher
+import com.example.a2023_q2_mironov.ui.util.formatAmount
+import com.example.a2023_q2_mironov.ui.util.formatPercent
+import com.example.a2023_q2_mironov.ui.util.formatPeriod
+import com.example.a2023_q2_mironov.ui.util.showUnauthorizedDialog
 import javax.inject.Inject
 
 class CreateLoanFragment : Fragment() {

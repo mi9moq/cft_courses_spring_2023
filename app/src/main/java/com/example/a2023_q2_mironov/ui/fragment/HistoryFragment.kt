@@ -23,7 +23,7 @@ import com.example.a2023_q2_mironov.presentation.history.HistoryState.Loading
 import com.example.a2023_q2_mironov.presentation.history.HistoryViewModel
 import com.example.a2023_q2_mironov.ui.activity.MainActivity
 import com.example.a2023_q2_mironov.ui.adapter.HistoryAdapter
-import com.example.a2023_q2_mironov.util.showUnauthorizedDialog
+import com.example.a2023_q2_mironov.ui.util.showUnauthorizedDialog
 import javax.inject.Inject
 
 class HistoryFragment : Fragment() {

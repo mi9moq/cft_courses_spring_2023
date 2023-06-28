@@ -6,11 +6,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.a2023_q2_mironov.R
 import com.example.a2023_q2_mironov.databinding.LoanHistoryItemBinding
 import com.example.a2023_q2_mironov.domain.entity.Loan
-import com.example.a2023_q2_mironov.util.colorStatus
-import com.example.a2023_q2_mironov.util.formatAmount
-import com.example.a2023_q2_mironov.util.formatBorrower
-import com.example.a2023_q2_mironov.util.formatDate
-import com.example.a2023_q2_mironov.util.formatLoanStatus
+import com.example.a2023_q2_mironov.ui.util.colorStatus
+import com.example.a2023_q2_mironov.ui.util.formatAmount
+import com.example.a2023_q2_mironov.ui.util.formatBorrower
+import com.example.a2023_q2_mironov.ui.util.formatDate
+import com.example.a2023_q2_mironov.ui.util.formatLoanStatus
 
 class HistoryViewHolder(
     parent: ViewGroup,

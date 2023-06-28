@@ -17,7 +17,7 @@ import com.example.a2023_q2_mironov.presentation.login.LoginState
 import com.example.a2023_q2_mironov.presentation.login.LoginState.*
 import com.example.a2023_q2_mironov.presentation.login.LoginViewModel
 import com.example.a2023_q2_mironov.ui.activity.MainActivity
-import com.example.a2023_q2_mironov.util.addTextWatcher
+import com.example.a2023_q2_mironov.ui.util.addTextWatcher
 import javax.inject.Inject
 
 class LoginFragment : Fragment() {

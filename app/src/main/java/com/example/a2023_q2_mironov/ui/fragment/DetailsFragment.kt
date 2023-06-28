@@ -22,13 +22,13 @@ import com.example.a2023_q2_mironov.presentation.details.DetailsState
 import com.example.a2023_q2_mironov.presentation.details.DetailsState.*
 import com.example.a2023_q2_mironov.presentation.details.DetailsViewModel
 import com.example.a2023_q2_mironov.ui.activity.MainActivity
-import com.example.a2023_q2_mironov.util.colorStatus
-import com.example.a2023_q2_mironov.util.formatAmount
-import com.example.a2023_q2_mironov.util.formatDate
-import com.example.a2023_q2_mironov.util.formatLoanStatus
-import com.example.a2023_q2_mironov.util.formatPercent
-import com.example.a2023_q2_mironov.util.formatPeriod
-import com.example.a2023_q2_mironov.util.showUnauthorizedDialog
+import com.example.a2023_q2_mironov.ui.util.colorStatus
+import com.example.a2023_q2_mironov.ui.util.formatAmount
+import com.example.a2023_q2_mironov.ui.util.formatDate
+import com.example.a2023_q2_mironov.ui.util.formatLoanStatus
+import com.example.a2023_q2_mironov.ui.util.formatPercent
+import com.example.a2023_q2_mironov.ui.util.formatPeriod
+import com.example.a2023_q2_mironov.ui.util.showUnauthorizedDialog
 import javax.inject.Inject
 
 class DetailsFragment : Fragment() {

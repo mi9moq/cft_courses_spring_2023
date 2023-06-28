@@ -25,8 +25,8 @@ import javax.inject.Inject
 
 class CreateLoanViewModel @Inject constructor(
     private val getLoanConditionUseCase: GetLoanConditionsUseCase,
-    private val getUserTokenUseCase: GetUserTokenUseCase,
     private val resetUserTokenUseCase: ResetUserTokenUseCase,
+    private val getUserTokenUseCase: GetUserTokenUseCase,
     private val router: CreateRouter,
 ) : ViewModel() {
 
@@ -60,9 +60,6 @@ class CreateLoanViewModel @Inject constructor(
             else -> _state.value = Error(LoanErrorType.UNKNOWN)
         }
     }
-
-    private val token = getUserTokenUseCase().userToken
-
     private lateinit var conditions: LoanConditions
 
     init {
@@ -70,6 +67,7 @@ class CreateLoanViewModel @Inject constructor(
     }
 
     fun loadCondition() {
+        val token = getUserTokenUseCase().userToken
         viewModelScope.launch(handler) {
             _state.value = Loading
             conditions = getLoanConditionUseCase(token)

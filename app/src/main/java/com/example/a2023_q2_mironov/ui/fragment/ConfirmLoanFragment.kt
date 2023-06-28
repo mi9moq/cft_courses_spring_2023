@@ -18,9 +18,9 @@ import com.example.a2023_q2_mironov.presentation.confirm.ConfirmLoanState
 import com.example.a2023_q2_mironov.presentation.confirm.ConfirmLoanState.*
 import com.example.a2023_q2_mironov.presentation.confirm.ConfirmLoanViewModel
 import com.example.a2023_q2_mironov.ui.activity.MainActivity
-import com.example.a2023_q2_mironov.util.formatAmount
-import com.example.a2023_q2_mironov.util.formatPercent
-import com.example.a2023_q2_mironov.util.showUnauthorizedDialog
+import com.example.a2023_q2_mironov.ui.util.formatAmount
+import com.example.a2023_q2_mironov.ui.util.formatPercent
+import com.example.a2023_q2_mironov.ui.util.showUnauthorizedDialog
 import javax.inject.Inject
 
 class ConfirmLoanFragment : Fragment() {

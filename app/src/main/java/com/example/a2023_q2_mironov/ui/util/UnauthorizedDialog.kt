@@ -1,4 +1,4 @@
-package com.example.a2023_q2_mironov.util
+package com.example.a2023_q2_mironov.ui.util
 
 import android.content.Context
 import androidx.appcompat.app.AlertDialog

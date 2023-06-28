@@ -51,4 +51,5 @@
     <string name="take_in_bank">Alternatively, you can receive the money in cash at the bank branch.</string>
     <string name="find_nearest_branch">find nearest branch</string>
     <string name="call_center_phone" translatable="false">+79876543210</string>
+    <string name="refresh">refresh</string>
 </resources>

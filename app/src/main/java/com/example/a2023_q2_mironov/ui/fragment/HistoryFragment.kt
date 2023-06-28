@@ -73,7 +73,7 @@ class HistoryFragment : Fragment() {
         binding.createLoan.setOnClickListener {
             viewModel.openCreate()
         }
-        binding.errorButton.setOnClickListener {
+        binding.refresh.setOnClickListener {
             viewModel.loadHistory()
         }
     }

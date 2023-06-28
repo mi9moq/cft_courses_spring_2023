@@ -49,6 +49,7 @@
     <string name="sberbank">Сбербанк</string>
     <string name="congratulations">Поздравляем, вам одобрен займ</string>
     <string name="transfer_to_card">Вы можете запросить перевод средств на карту, связавшись с оператором по номеру:</string>
-    <string name="take_in_bank">Либо получить деньги наличными в отделении банка/</string>
-    <string name="find_nearest_branch">найти ближайшее отделение/</string>
+    <string name="take_in_bank">Либо получить деньги наличными в отделении банка</string>
+    <string name="find_nearest_branch">найти ближайшее отделение</string>
+    <string name="refresh">обновить</string>
 </resources>

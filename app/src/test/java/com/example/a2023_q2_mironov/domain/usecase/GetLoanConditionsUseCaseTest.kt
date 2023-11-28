@@ -23,7 +23,7 @@ class GetLoanConditionsUseCaseTest {
 
     @Test
     fun `invoke EXPECT loan conditions`() = runTest {
-        whenever(repository.getLoanConditions(token)) doReturn conditions
+        whenever(repository.getConditions(token)) doReturn conditions
 
         val expected = conditions
         val actual = useCase(token)

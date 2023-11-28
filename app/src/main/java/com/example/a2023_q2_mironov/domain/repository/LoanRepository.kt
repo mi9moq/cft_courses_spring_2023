@@ -6,11 +6,11 @@ import com.example.a2023_q2_mironov.domain.entity.LoanRequest
 
 interface LoanRepository {
 
-    suspend fun createLoan(token: String, loan: LoanRequest)
+    suspend fun create(token: String, loan: LoanRequest)
 
-    suspend fun getAllLoans(token: String): List<Loan>
+    suspend fun getAll(token: String): List<Loan>
 
     suspend fun getLoanById(token: String, id: Long): Loan
 
-    suspend fun getLoanConditions(token: String): LoanConditions
+    suspend fun getConditions(token: String): LoanConditions
 }

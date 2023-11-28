@@ -14,13 +14,13 @@ import javax.inject.Inject
 
 interface LoanRemoteDataSource {
 
-    suspend fun createLoan(token: String, loan: LoanRequest)
+    suspend fun create(token: String, loan: LoanRequest)
 
-    suspend fun getAllLoans(token: String): List<Loan>
+    suspend fun getAll(token: String): List<Loan>
 
     suspend fun getLoanById(token: String, id: Long): Loan
 
-    suspend fun getLoanConditions(token: String): LoanConditions
+    suspend fun getConditions(token: String): LoanConditions
 }
 
 class LoanRemoteDataSourceImpl @Inject constructor(
@@ -31,13 +31,13 @@ class LoanRemoteDataSourceImpl @Inject constructor(
     private val requestConverter: LoanRequestConverter,
 ) : LoanRemoteDataSource {
 
-    override suspend fun createLoan(token: String, loan: LoanRequest) {
+    override suspend fun create(token: String, loan: LoanRequest) {
         withContext(ioDispatcher) {
             api.createLoan(token, loan.let(requestConverter::convert))
         }
     }
 
-    override suspend fun getAllLoans(token: String): List<Loan> = withContext(ioDispatcher) {
+    override suspend fun getAll(token: String): List<Loan> = withContext(ioDispatcher) {
         api.getAll(token).map(loanConverter::revert)
     }
 
@@ -46,7 +46,7 @@ class LoanRemoteDataSourceImpl @Inject constructor(
     }
 
 
-    override suspend fun getLoanConditions(token: String): LoanConditions =
+    override suspend fun getConditions(token: String): LoanConditions =
         withContext(ioDispatcher) {
             api.getLoanConditions(token).let(conditionsConverter::revert)
         }

@@ -24,6 +24,6 @@ class CreateLoanUseCaseTest {
 
         useCase(token, loanRequest)
 
-        verify(repository).createLoan(token, loanRequest)
+        verify(repository).create(token, loanRequest)
     }
 }

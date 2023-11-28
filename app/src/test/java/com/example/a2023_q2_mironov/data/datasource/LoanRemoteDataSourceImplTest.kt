@@ -52,7 +52,7 @@ class LoanRemoteDataSourceImplTest {
         whenever(loanConverter.revert(loanDto)) doReturn loan
 
         val expected = loans
-        val actual = dataSource.getAllLoans(token)
+        val actual = dataSource.getAll(token)
 
         assertEquals(expected, actual)
     }
@@ -90,7 +90,7 @@ class LoanRemoteDataSourceImplTest {
         whenever(loanConditionsConverter.revert(conditionsDto)) doReturn conditions
 
         val expected = conditions
-        val actual = dataSource.getLoanConditions(token)
+        val actual = dataSource.getConditions(token)
 
         assertEquals(expected, actual)
     }
@@ -107,7 +107,7 @@ class LoanRemoteDataSourceImplTest {
         )
         whenever(loanRequestConverter.convert(request)) doReturn requestDto
 
-        dataSource.createLoan(token, request)
+        dataSource.create(token, request)
 
         verify(api).createLoan(token, requestDto)
     }

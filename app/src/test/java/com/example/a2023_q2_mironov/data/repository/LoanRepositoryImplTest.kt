@@ -30,10 +30,10 @@ class LoanRepositoryImplTest {
 
     @Test
     fun `get all EXPECT loans list`() = runTest {
-        whenever(dataSource.getAllLoans(token)) doReturn loans
+        whenever(dataSource.getAll(token)) doReturn loans
 
         val expected = loans
-        val actual = repository.getAllLoans(token)
+        val actual = repository.getAll(token)
 
         assertEquals(expected, actual)
     }
@@ -41,9 +41,9 @@ class LoanRepositoryImplTest {
     @Test
     fun `create EXEPCT create loan`() = runTest {
 
-        repository.createLoan(token, request)
+        repository.create(token, request)
 
-        verify(dataSource).createLoan(token, request)
+        verify(dataSource).create(token, request)
     }
 
     @Test
@@ -58,10 +58,10 @@ class LoanRepositoryImplTest {
 
     @Test
     fun `get conditions EXPECT conditions`() = runTest {
-        whenever(dataSource.getLoanConditions(token)) doReturn conditions
+        whenever(dataSource.getConditions(token)) doReturn conditions
 
         val expected = conditions
-        val actual = repository.getLoanConditions(token)
+        val actual = repository.getConditions(token)
 
         assertEquals(expected, actual)
     }

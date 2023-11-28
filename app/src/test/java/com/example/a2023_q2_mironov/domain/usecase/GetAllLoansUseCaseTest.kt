@@ -23,7 +23,7 @@ class GetAllLoansUseCaseTest {
 
     @Test
     fun `invoke EXPECT list loans`() = runTest {
-        whenever(repository.getAllLoans(token)) doReturn loans
+        whenever(repository.getAll(token)) doReturn loans
 
         val expected = loans
         val actual = useCase(token)

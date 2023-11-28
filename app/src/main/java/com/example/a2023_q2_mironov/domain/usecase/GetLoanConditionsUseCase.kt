@@ -8,5 +8,5 @@ class GetLoanConditionsUseCase @Inject constructor(
     private val repository: LoanRepository
 ) {
     suspend operator fun invoke(userToken: String): LoanConditions =
-        repository.getLoanConditions(userToken)
+        repository.getConditions(userToken)
 }

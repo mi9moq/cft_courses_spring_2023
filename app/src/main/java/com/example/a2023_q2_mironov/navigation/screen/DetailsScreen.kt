@@ -1,6 +1,6 @@
 package com.example.a2023_q2_mironov.navigation.screen
 
-import com.example.a2023_q2_mironov.ui.fragment.DetailsFragment
+import com.example.a2023_q2_mironov.ui.details.DetailsFragment
 import com.github.terrakok.cicerone.androidx.FragmentScreen
 
 fun getDetailsScreen(id: Long) = FragmentScreen {

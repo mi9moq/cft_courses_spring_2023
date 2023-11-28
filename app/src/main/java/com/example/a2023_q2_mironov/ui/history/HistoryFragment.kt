@@ -1,4 +1,4 @@
-package com.example.a2023_q2_mironov.ui.fragment
+package com.example.a2023_q2_mironov.ui.history
 
 import android.content.Context
 import android.os.Bundle
@@ -22,7 +22,7 @@ import com.example.a2023_q2_mironov.presentation.history.HistoryState.Initial
 import com.example.a2023_q2_mironov.presentation.history.HistoryState.Loading
 import com.example.a2023_q2_mironov.presentation.history.HistoryViewModel
 import com.example.a2023_q2_mironov.ui.activity.MainActivity
-import com.example.a2023_q2_mironov.ui.adapter.HistoryAdapter
+import com.example.a2023_q2_mironov.ui.history.adapter.HistoryAdapter
 import com.example.a2023_q2_mironov.ui.util.showUnauthorizedDialog
 import javax.inject.Inject
 

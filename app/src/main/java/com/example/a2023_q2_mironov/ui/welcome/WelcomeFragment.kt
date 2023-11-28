@@ -1,4 +1,4 @@
-package com.example.a2023_q2_mironov.ui.fragment
+package com.example.a2023_q2_mironov.ui.welcome
 
 import android.content.Context
 import android.os.Bundle
@@ -7,31 +7,31 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.a2023_q2_mironov.databinding.FragmentMainBinding
+import com.example.a2023_q2_mironov.databinding.FragmentWelcomeBinding
 import com.example.a2023_q2_mironov.presentation.ViewModelFactory
-import com.example.a2023_q2_mironov.presentation.main.MainViewModel
+import com.example.a2023_q2_mironov.presentation.welcom.WelcomeViewModel
 import com.example.a2023_q2_mironov.ui.activity.MainActivity
 import javax.inject.Inject
 
-class MainFragment : Fragment() {
+class WelcomeFragment : Fragment() {
 
     companion object {
-        fun newInstance() = MainFragment()
+        fun newInstance() = WelcomeFragment()
     }
 
     private val component by lazy {
         (requireActivity() as MainActivity).component
     }
 
-    private var _binding: FragmentMainBinding? = null
-    private val binding: FragmentMainBinding
+    private var _binding: FragmentWelcomeBinding? = null
+    private val binding: FragmentWelcomeBinding
         get() = _binding!!
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
     private val viewModel by lazy {
-        ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
+        ViewModelProvider(this, viewModelFactory)[WelcomeViewModel::class.java]
     }
 
     override fun onAttach(context: Context) {
@@ -44,7 +44,7 @@ class MainFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentMainBinding.inflate(inflater, container, false)
+        _binding = FragmentWelcomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -54,16 +54,11 @@ class MainFragment : Fragment() {
     }
 
     private fun setupClickListeners() {
-        with(binding) {
-            guid.setOnClickListener {
-                viewModel.showGuid()
-            }
-            newLoan.setOnClickListener {
-                viewModel.creteLoan()
-            }
-            history.setOnClickListener {
-                viewModel.showHistory()
-            }
+        binding.login.setOnClickListener {
+            viewModel.login()
+        }
+        binding.registration.setOnClickListener {
+            viewModel.registration()
         }
     }
 

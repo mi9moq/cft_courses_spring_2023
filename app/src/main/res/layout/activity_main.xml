@@ -5,6 +5,6 @@
     android:id="@+id/fragment_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:name="com.example.a2023_q2_mironov.ui.fragment.WelcomeFragment"
+    android:name="com.example.a2023_q2_mironov.ui.welcome.WelcomeFragment"
     tools:layout="@layout/fragment_welcome"
     tools:context=".ui.activity.MainActivity"/>

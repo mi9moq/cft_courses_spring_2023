@@ -9,17 +9,17 @@ import com.example.a2023_q2_mironov.di.module.NavigationModule
 import com.example.a2023_q2_mironov.di.module.NetworkModule
 import com.example.a2023_q2_mironov.di.module.UserModule
 import com.example.a2023_q2_mironov.di.module.ViewModelModule
-import com.example.a2023_q2_mironov.ui.fragment.ConfirmLoanFragment
-import com.example.a2023_q2_mironov.ui.fragment.CreateLoanFragment
-import com.example.a2023_q2_mironov.ui.fragment.DetailsFragment
-import com.example.a2023_q2_mironov.ui.fragment.GuidFragment
-import com.example.a2023_q2_mironov.ui.fragment.HistoryFragment
-import com.example.a2023_q2_mironov.ui.fragment.LoanApprovedFragment
-import com.example.a2023_q2_mironov.ui.fragment.LoginFragment
+import com.example.a2023_q2_mironov.ui.confirm.ConfirmLoanFragment
+import com.example.a2023_q2_mironov.ui.create.CreateLoanFragment
+import com.example.a2023_q2_mironov.ui.details.DetailsFragment
+import com.example.a2023_q2_mironov.ui.guid.GuidFragment
+import com.example.a2023_q2_mironov.ui.history.HistoryFragment
+import com.example.a2023_q2_mironov.ui.approved.LoanApprovedFragment
+import com.example.a2023_q2_mironov.ui.login.LoginFragment
 import com.example.a2023_q2_mironov.ui.activity.MainActivity
-import com.example.a2023_q2_mironov.ui.fragment.MainFragment
-import com.example.a2023_q2_mironov.ui.fragment.RegistrationFragment
-import com.example.a2023_q2_mironov.ui.fragment.WelcomeFragment
+import com.example.a2023_q2_mironov.ui.main.MainFragment
+import com.example.a2023_q2_mironov.ui.regitration.RegistrationFragment
+import com.example.a2023_q2_mironov.ui.welcome.WelcomeFragment
 import dagger.BindsInstance
 import dagger.Component
 

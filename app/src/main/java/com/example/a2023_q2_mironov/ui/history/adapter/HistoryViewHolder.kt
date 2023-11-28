@@ -1,4 +1,4 @@
-package com.example.a2023_q2_mironov.ui.adapter
+package com.example.a2023_q2_mironov.ui.history.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

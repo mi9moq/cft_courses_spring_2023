@@ -1,4 +1,4 @@
-package com.example.a2023_q2_mironov.ui.fragment
+package com.example.a2023_q2_mironov.ui.regitration
 
 import android.content.Context
 import android.os.Bundle
@@ -9,36 +9,36 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.a2023_q2_mironov.R
-import com.example.a2023_q2_mironov.databinding.FragmentLoginBinding
+import com.example.a2023_q2_mironov.databinding.FragmentRegistrationBinding
 import com.example.a2023_q2_mironov.domain.entity.AuthErrorType
 import com.example.a2023_q2_mironov.domain.entity.AuthErrorType.*
 import com.example.a2023_q2_mironov.presentation.ViewModelFactory
-import com.example.a2023_q2_mironov.presentation.login.LoginState
-import com.example.a2023_q2_mironov.presentation.login.LoginState.*
-import com.example.a2023_q2_mironov.presentation.login.LoginViewModel
+import com.example.a2023_q2_mironov.presentation.registration.RegistrationState
+import com.example.a2023_q2_mironov.presentation.registration.RegistrationState.*
+import com.example.a2023_q2_mironov.presentation.registration.RegistrationViewModel
 import com.example.a2023_q2_mironov.ui.activity.MainActivity
 import com.example.a2023_q2_mironov.ui.util.addTextWatcher
 import javax.inject.Inject
 
-class LoginFragment : Fragment() {
+class RegistrationFragment : Fragment() {
 
     companion object {
-        fun newInstance(): LoginFragment = LoginFragment()
+        fun newInstance() = RegistrationFragment()
     }
 
     private val component by lazy {
         (requireActivity() as MainActivity).component
     }
 
-    private var _binding: FragmentLoginBinding? = null
-    private val binding: FragmentLoginBinding
+    private var _binding: FragmentRegistrationBinding? = null
+    private val binding: FragmentRegistrationBinding
         get() = _binding!!
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
     private val viewModel by lazy {
-        ViewModelProvider(this, viewModelFactory)[LoginViewModel::class.java]
+        ViewModelProvider(this, viewModelFactory)[RegistrationViewModel::class.java]
     }
 
     override fun onAttach(context: Context) {
@@ -51,7 +51,7 @@ class LoginFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentLoginBinding.inflate(inflater, container, false)
+        _binding = FragmentRegistrationBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -75,11 +75,11 @@ class LoginFragment : Fragment() {
     private fun emptyFieldMessage(invalid: Boolean): String? =
         if (invalid) getString(R.string.empty_field) else null
 
-    private fun launchState(state: LoginState) {
+    private fun launchState(state: RegistrationState) {
         when (state) {
             Initial -> Unit
-            Loading -> launchLoadingState()
             is Error -> launchErrorState(state.type)
+            Loading -> launchLoadingState()
         }
     }
 
@@ -87,9 +87,7 @@ class LoginFragment : Fragment() {
         binding.progressBar.visibility = View.GONE
         binding.content.visibility = View.VISIBLE
         when (type) {
-            WRONG_LOGIN_OR_PASSWORD -> binding.tilPassword.error =
-                getString(R.string.wrong_log_or_pas)
-
+            WRONG_LOGIN_OR_PASSWORD -> Unit
 
             UNKNOWN -> {
                 val message = getString(R.string.unknown_error)
@@ -101,7 +99,9 @@ class LoginFragment : Fragment() {
                 showToast(message)
             }
 
-            USER_EXIST -> Unit
+            USER_EXIST -> binding.tilLogin.error =
+                getString(R.string.user_exists)
+
         }
     }
 
@@ -116,7 +116,7 @@ class LoginFragment : Fragment() {
 
     private fun setupClickListener() {
         binding.login.setOnClickListener {
-            viewModel.login(
+            viewModel.registration(
                 binding.etLogin.text?.toString(),
                 binding.etPassword.text?.toString()
             )

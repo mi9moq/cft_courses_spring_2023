@@ -1,4 +1,4 @@
-package com.example.a2023_q2_mironov.ui.adapter
+package com.example.a2023_q2_mironov.ui.history.adapter
 
 import androidx.recyclerview.widget.DiffUtil
 import com.example.a2023_q2_mironov.domain.entity.Loan
